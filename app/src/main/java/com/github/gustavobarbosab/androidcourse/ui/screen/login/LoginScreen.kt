@@ -1,6 +1,5 @@
 package com.github.gustavobarbosab.androidcourse.ui.screen.login
 
-import android.widget.Space
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -10,10 +9,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -23,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
@@ -31,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.InputValidationState
 import kotlinx.coroutines.launch
 
 @Composable
@@ -75,12 +74,9 @@ fun LoginScreen(
                 value = state.username,
                 onValueChange = viewModel::usernameChanged,
                 label = { Text("Usuário") },
-                isError = state.hasUsernameError,
+                isError = state.isUsernameStateInvalid,
                 supportingText = {
-                    ErrorText(
-                        state.hasUsernameError,
-                        state.usernameError.orEmpty()
-                    )
+                    ErrorText(state.usernameValidation)
                 }
             )
             OutlinedTextField(
@@ -90,12 +86,9 @@ fun LoginScreen(
                 value = state.password,
                 onValueChange = viewModel::passwordChanged,
                 label = { Text("Senha") },
-                isError = state.hasPasswordError,
+                isError = state.isPasswordStateInvalid,
                 supportingText = {
-                    ErrorText(
-                        state.hasPasswordError,
-                        state.passwordError.orEmpty()
-                    )
+                    ErrorText(state.passwordValidation)
                 }
             )
             Button(
@@ -118,14 +111,18 @@ fun LoginScreen(
     }
 }
 
-
 @Composable
-fun ErrorText(hasError: Boolean, message: String) {
-    if (!hasError) return
-    Text(
-        text = message,
-        color = Color.Red
-    )
+fun ErrorText(inputValidation: InputValidationState) {
+    when (inputValidation) {
+        is InputValidationState.InvalidField -> {
+            Text(
+                text = stringResource(id = inputValidation.message),
+                color = Color.Red
+            )
+        }
+
+        InputValidationState.ValidField -> Unit
+    }
 }
 
 @Preview(device = "id:pixel_4")

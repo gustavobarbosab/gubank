@@ -1,13 +1,13 @@
 package com.github.gustavobarbosab.androidcourse.ui.screen.login
 
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.InputValidationState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.emptyString
 import org.hamcrest.Matchers.equalTo
-import org.hamcrest.Matchers.notNullValue
-import org.hamcrest.Matchers.nullValue
+import org.hamcrest.Matchers.instanceOf
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
@@ -24,8 +24,8 @@ class LoginViewModelTest {
         // THEN
         assertThat(state.username, emptyString())
         assertThat(state.password, emptyString())
-        assertThat(state.usernameError, notNullValue())
-        assertThat(state.passwordError, notNullValue())
+        assertThat(state.usernameValidation, instanceOf(InputValidationState.InvalidField::class.java))
+        assertThat(state.passwordValidation, instanceOf(InputValidationState.InvalidField::class.java))
     }
 
     @Test
@@ -40,8 +40,8 @@ class LoginViewModelTest {
         // THEN
         assertThat(state.username, equalTo("teste@aa.com"))
         assertThat(state.password, emptyString())
-        assertThat(state.usernameError, nullValue())
-        assertThat(state.passwordError, notNullValue())
+        assertThat(state.usernameValidation, instanceOf(InputValidationState.ValidField::class.java))
+        assertThat(state.passwordValidation, instanceOf(InputValidationState.InvalidField::class.java))
     }
 
     @Test
@@ -56,8 +56,8 @@ class LoginViewModelTest {
         // THEN
         assertThat(state.username, emptyString())
         assertThat(state.password, equalTo("teste"))
-        assertThat(state.usernameError, notNullValue())
-        assertThat(state.passwordError, nullValue())
+        assertThat(state.usernameValidation, instanceOf(InputValidationState.InvalidField::class.java))
+        assertThat(state.passwordValidation, instanceOf(InputValidationState.ValidField::class.java))
     }
 
     @Test
@@ -73,7 +73,7 @@ class LoginViewModelTest {
         // THEN
         assertThat(state.username, equalTo("teste@aa.com"))
         assertThat(state.password, equalTo("teste"))
-        assertThat(state.usernameError, nullValue())
-        assertThat(state.passwordError, nullValue())
+        assertThat(state.usernameValidation, instanceOf(InputValidationState.ValidField::class.java))
+        assertThat(state.passwordValidation, instanceOf(InputValidationState.ValidField::class.java))
     }
 }

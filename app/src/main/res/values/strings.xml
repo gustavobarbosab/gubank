@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Android Course</string>
+    <string name="login_invalid_username">Nome de usuário inválido</string>
+    <string name="login_invalid_password">Senha inválida</string>
 </resources>
