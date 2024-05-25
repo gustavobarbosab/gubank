@@ -21,6 +21,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -73,7 +74,8 @@ fun LoginScreen(
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+                    .padding(horizontal = 16.dp)
+                    .testTag("USERNAME_INPUT"),
                 value = state.username,
                 onValueChange = viewModel::usernameChanged,
                 label = { Text("Usuário") },
@@ -85,7 +87,8 @@ fun LoginScreen(
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+                    .padding(horizontal = 16.dp)
+                    .testTag("PASSWORD_INPUT"),
                 value = state.password,
                 onValueChange = viewModel::passwordChanged,
                 label = { Text("Senha") },
@@ -99,6 +102,7 @@ fun LoginScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 16.dp, end = 16.dp, top = 16.dp)
+                    .testTag("LOGIN_BUTTON")
             ) {
                 Text(text = "Entrar")
             }
@@ -115,10 +119,14 @@ fun LoginScreen(
 }
 
 @Composable
-fun ErrorText(inputValidation: InputValidationState) {
+fun ErrorText(
+    inputValidation: InputValidationState,
+    modifier: Modifier = Modifier
+) {
     when (inputValidation) {
         is InputValidationState.InvalidField -> {
             Text(
+                modifier = modifier,
                 text = stringResource(id = inputValidation.feedbackResource.stringRes),
                 color = Color.Red
             )

@@ -44,7 +44,20 @@ android {
     }
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += mutableSetOf(
+                "/META-INF/{AL2.0,LGPL2.1}",
+                "META-INF/*"
+            )
+        }
+
+    }
+
+    @Suppress("UnstableApiUsage")
+    testOptions {
+        packaging {
+            jniLibs {
+                useLegacyPackaging = true
+            }
         }
     }
 }
@@ -57,18 +70,25 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
+
+    androidTestImplementation(libs.mockk.android)
     testImplementation(libs.mockk)
     testImplementation(libs.hamcrest)
     testImplementation(libs.coroutines.test)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.lifecycle.viewmodel)
-    implementation(libs.androidx.material3)
-    implementation(libs.androidx.navigation)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    // Test rules and transitive dependencies:
+    androidTestImplementation(libs.compose.test.junit)
+    // Needed for createComposeRule(), but not for createAndroidComposeRule<YourActivity>():
+    debugImplementation(libs.compose.test.manifest)
+
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }

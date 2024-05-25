@@ -13,11 +13,13 @@ lifecycle-viewmodel = "2.6.1"
 mockk = "1.13.11"
 hamcrest = "2.2"
 coroutines-test = "1.8.1"
+compose-test = "1.6.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
@@ -34,6 +36,8 @@ androidx-navigation = { module = "androidx.navigation:navigation-compose", versi
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle-viewmodel" }
 hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "hamcrest" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines-test" }
+compose-test-junit = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose-test" }
+compose-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose-test" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
