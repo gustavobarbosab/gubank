@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,11 +42,13 @@ fun LoginScreen(
     val snackBarState by viewModel.snackbarState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     LaunchedEffect(snackBarState) {
+        val snackBarResourceMessage = snackBarState ?: return@LaunchedEffect
+        val message = context.getString(snackBarResourceMessage.stringRes)
         scope.launch {
-            val snackBarMessage = snackBarState ?: return@launch
-            snackbarHostState.showSnackbar(snackBarMessage)
+            snackbarHostState.showSnackbar(message)
             viewModel.snackBarShown()
         }
     }
@@ -116,7 +119,7 @@ fun ErrorText(inputValidation: InputValidationState) {
     when (inputValidation) {
         is InputValidationState.InvalidField -> {
             Text(
-                text = stringResource(id = inputValidation.message),
+                text = stringResource(id = inputValidation.feedbackResource.stringRes),
                 color = Color.Red
             )
         }
