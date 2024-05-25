@@ -39,8 +39,8 @@ fun LoginScreen(
     viewModel: LoginViewModel = viewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
-    val snackBarState by viewModel.snackbarState.collectAsState()
-    val snackbarHostState = remember { SnackbarHostState() }
+    val snackBarState by viewModel.feedbackState.collectAsState()
+    val snackBarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
 
@@ -48,14 +48,14 @@ fun LoginScreen(
         val snackBarResourceMessage = snackBarState ?: return@LaunchedEffect
         val message = context.getString(snackBarResourceMessage.stringRes)
         scope.launch {
-            snackbarHostState.showSnackbar(message)
+            snackBarHostState.showSnackbar(message)
             viewModel.snackBarShown()
         }
     }
 
     Scaffold(
         snackbarHost = {
-            SnackbarHost(hostState = snackbarHostState)
+            SnackbarHost(hostState = snackBarHostState)
         }
     ) {
         Column(

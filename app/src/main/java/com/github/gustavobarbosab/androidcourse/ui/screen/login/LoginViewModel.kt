@@ -16,9 +16,9 @@ class LoginViewModel : ViewModel() {
     val uiState
         get() = _uiState.asStateFlow()
 
-    private var _snackbarState = MutableStateFlow<LoginFeedbackResource?>(null)
-    val snackbarState
-        get() = _snackbarState.asStateFlow()
+    private var _feedbackState = MutableStateFlow<LoginFeedbackResource?>(null)
+    val feedbackState
+        get() = _feedbackState.asStateFlow()
 
     private val usernameValidator = FieldValidator(
         invalidFeedbackResource = LoginFeedbackResource.InvalidUsername
@@ -66,14 +66,14 @@ class LoginViewModel : ViewModel() {
             return
         }
 
-        _snackbarState.value = LoginFeedbackResource.LoginSuccessful
+        _feedbackState.value = LoginFeedbackResource.LoginSuccessful
     }
 
     fun onClickToSignUp() {
-        _snackbarState.value = LoginFeedbackResource.SignUp
+        _feedbackState.value = LoginFeedbackResource.SignUp
     }
 
     fun snackBarShown() {
-        _snackbarState.value = null
+        _feedbackState.value = null
     }
 }
