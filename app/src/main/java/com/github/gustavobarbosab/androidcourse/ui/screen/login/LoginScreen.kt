@@ -25,13 +25,14 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.github.gustavobarbosab.androidcourse.R
+import com.github.gustavobarbosab.androidcourse.ui.common.size.fontSizeBig
+import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingSmall
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.InputValidationState
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginTestTags
 import kotlinx.coroutines.launch
 
 @Composable
@@ -54,74 +55,72 @@ fun LoginScreen(
         }
     }
 
-    Scaffold(
-        snackbarHost = {
-            SnackbarHost(hostState = snackBarHostState)
-        }
-    ) {
-        Column(
-            modifier = Modifier.padding(it)
-        ) {
+    Scaffold(snackbarHost = { SnackbarHost(hostState = snackBarHostState) }) {
+        Column(modifier = Modifier.padding(it)) {
             Spacer(modifier = Modifier.fillMaxHeight(0.25f))
             Text(
                 text = "Login",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 16.dp),
+                    .padding(vertical = paddingSmall),
                 textAlign = TextAlign.Center,
-                fontSize = TextUnit(24f, TextUnitType.Sp)
+                fontSize = fontSizeBig
             )
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .testTag("USERNAME_INPUT"),
+                    .padding(horizontal = paddingSmall)
+                    .testTag(LoginTestTags.USERNAME_FIELD),
                 value = state.username,
                 onValueChange = viewModel::usernameChanged,
-                label = { Text("Usuário") },
+                label = { Text(stringResource(R.string.login_username_hint)) },
                 isError = state.isUsernameStateInvalid,
                 supportingText = {
-                    ErrorText(state.usernameValidation)
+                    ErrorTextField(inputValidation = state.usernameValidation)
                 }
             )
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .testTag("PASSWORD_INPUT"),
+                    .padding(horizontal = paddingSmall)
+                    .testTag(LoginTestTags.PASSWORD_FIELD),
                 value = state.password,
                 onValueChange = viewModel::passwordChanged,
-                label = { Text("Senha") },
+                label = { Text(stringResource(R.string.login_password_hint)) },
                 isError = state.isPasswordStateInvalid,
                 supportingText = {
-                    ErrorText(state.passwordValidation)
+                    ErrorTextField(inputValidation = state.passwordValidation)
                 }
             )
             Button(
                 onClick = viewModel::onClickToLogin,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp, top = 16.dp)
-                    .testTag("LOGIN_BUTTON")
+                    .padding(
+                        start = paddingSmall,
+                        end = paddingSmall,
+                        top = paddingSmall
+                    )
+                    .testTag(LoginTestTags.LOGIN_BUTTON)
             ) {
-                Text(text = "Entrar")
+                Text(text = stringResource(R.string.login_button))
             }
             OutlinedButton(
                 onClick = viewModel::onClickToSignUp,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
+                    .padding(horizontal = paddingSmall)
             ) {
-                Text(text = "Criar conta")
+                Text(text = stringResource(R.string.login_sign_up_button))
             }
         }
     }
 }
 
 @Composable
-fun ErrorText(
+fun ErrorTextField(
+    modifier: Modifier = Modifier,
     inputValidation: InputValidationState,
-    modifier: Modifier = Modifier
 ) {
     when (inputValidation) {
         is InputValidationState.InvalidField -> {

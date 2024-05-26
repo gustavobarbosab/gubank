@@ -1,20 +1,15 @@
 package com.github.gustavobarbosab.androidcourse.ui.screen.login
 
-import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextContains
-import androidx.compose.ui.test.assertTextEquals
-import androidx.compose.ui.test.hasAnyChild
-import androidx.compose.ui.test.hasAnyDescendant
-import androidx.compose.ui.test.hasText
-import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.navigation.NavHostController
-import com.github.gustavobarbosab.androidcourse.ui.theme.AndroidCourseTheme
+import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginTestTags
 import io.mockk.mockk
 import io.mockk.spyk
 import io.mockk.verify
@@ -31,7 +26,6 @@ class LoginScreenTest {
 
     @Test
     fun testingStartScreenWithInvalidInputs() {
-        // Start the app
         composeTestRule.setContent {
             AndroidCourseTheme {
                 LoginScreen(
@@ -42,19 +36,19 @@ class LoginScreenTest {
         }
 
         with(composeTestRule) {
-            onNodeWithTag("USERNAME_INPUT")
+            onNodeWithTag(LoginTestTags.USERNAME_FIELD)
                 .performTextInput("")
 
-            onNodeWithTag("PASSWORD_INPUT")
+            onNodeWithTag(LoginTestTags.PASSWORD_FIELD)
                 .performTextInput("")
 
-            onNodeWithTag("LOGIN_BUTTON")
+            onNodeWithTag(LoginTestTags.LOGIN_BUTTON)
                 .performClick()
 
-            onNodeWithTag("USERNAME_INPUT")
+            onNodeWithTag(LoginTestTags.USERNAME_FIELD)
                 .assertTextContains("Nome de usuário inválido")
 
-            onNodeWithTag("PASSWORD_INPUT")
+            onNodeWithTag(LoginTestTags.PASSWORD_FIELD)
                 .assertTextContains("Senha inválida")
         }
 
@@ -68,7 +62,6 @@ class LoginScreenTest {
 
     @Test
     fun testingStartScreenWithValidInputs() {
-        // Start the app
         composeTestRule.setContent {
             AndroidCourseTheme {
                 LoginScreen(
@@ -79,13 +72,13 @@ class LoginScreenTest {
         }
 
         with(composeTestRule) {
-            onNodeWithTag("USERNAME_INPUT")
+            onNodeWithTag(LoginTestTags.USERNAME_FIELD)
                 .performTextInput("gustavo@aa.com")
 
-            onNodeWithTag("PASSWORD_INPUT")
+            onNodeWithTag(LoginTestTags.PASSWORD_FIELD)
                 .performTextInput("12123")
 
-            onNodeWithTag("LOGIN_BUTTON")
+            onNodeWithTag(LoginTestTags.LOGIN_BUTTON)
                 .performClick()
 
             onNodeWithText("Login feito com sucesso")

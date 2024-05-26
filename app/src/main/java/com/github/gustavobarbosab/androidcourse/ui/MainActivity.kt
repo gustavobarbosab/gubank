@@ -13,7 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.github.gustavobarbosab.androidcourse.ui.navigation.NavigationRoute
 import com.github.gustavobarbosab.androidcourse.ui.screen.home.HomeScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.LoginScreen
-import com.github.gustavobarbosab.androidcourse.ui.theme.AndroidCourseTheme
+import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

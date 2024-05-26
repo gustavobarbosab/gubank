@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.theme
+package com.github.gustavobarbosab.androidcourse.ui.common.theme
 
 import android.app.Activity
 import android.os.Build
