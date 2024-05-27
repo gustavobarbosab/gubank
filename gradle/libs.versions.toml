@@ -14,6 +14,7 @@ mockk = "1.13.11"
 hamcrest = "2.2"
 coroutines-test = "1.8.1"
 compose-test = "1.6.7"
+uiTextGoogleFonts = "1.6.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,6 +39,7 @@ hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "hamcrest" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines-test" }
 compose-test-junit = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose-test" }
 compose-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose-test" }
+androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
