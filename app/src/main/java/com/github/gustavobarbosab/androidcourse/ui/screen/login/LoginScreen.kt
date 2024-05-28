@@ -3,6 +3,7 @@ package com.github.gustavobarbosab.androidcourse.ui.screen.login
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -82,77 +83,26 @@ fun LoginScreen(
                         .wrapContentHeight()
                         .align(Alignment.CenterVertically)
                 ) {
-                    Icon(
-                        contentDescription = "Logo",
-                        modifier = Modifier
-                            .wrapContentHeight()
-                            .fillMaxWidth()
-                            .align(Alignment.CenterHorizontally),
-                        painter = painterResource(id = R.drawable.ic_logo),
-                        tint = Color.White
-                    )
+                    AppLogo()
                     RoundedCard(
                         margin = paddingMedium,
                         paddingHorizontal = paddingTiny,
                         paddingVertical = paddingBig,
                     ) {
-                        OutlinedTextField(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = paddingSmall)
-                                .testTag(LoginTestTags.USERNAME_FIELD),
-                            value = state.username,
+                        UsernameTextField(
                             onValueChange = viewModel::usernameChanged,
-                            label = { Text(stringResource(R.string.login_username_hint)) },
-                            isError = state.isUsernameStateInvalid,
-                            supportingText = {
-                                ErrorTextField(inputValidation = state.usernameValidation)
-                            }
+                            value = state.username,
+                            validationState = state.usernameValidation,
+                            hasError = state.isUsernameStateInvalid
                         )
-                        OutlinedTextField(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = paddingSmall)
-                                .testTag(LoginTestTags.PASSWORD_FIELD),
-                            value = state.password,
+                        PasswordTextField(
                             onValueChange = viewModel::passwordChanged,
-                            label = { Text(stringResource(R.string.login_password_hint)) },
-                            isError = state.isPasswordStateInvalid,
-                            supportingText = {
-                                ErrorTextField(inputValidation = state.passwordValidation)
-                            }
+                            value = state.password,
+                            validationState = state.passwordValidation,
+                            hasError = state.isPasswordStateInvalid
                         )
-                        PrimaryButton(
-                            onClick = viewModel::onClickToLogin,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(
-                                    start = paddingSmall,
-                                    end = paddingSmall,
-                                    top = paddingSmall
-                                )
-                                .testTag(LoginTestTags.LOGIN_BUTTON)
-                        ) {
-                            Text(text = stringResource(R.string.login_button))
-                        }
-                        SecondaryButton(
-                            onClick = viewModel::onClickToSignUp,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = paddingSmall)
-                        ) {
-                            Text(
-                                text = buildAnnotatedString {
-                                    withStyle(style = SpanStyle(fontWeight = FontWeight.Light)) {
-                                        append(stringResource(R.string.login_sign_up_button_1))
-                                    }
-                                    append(" ")
-                                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append(stringResource(R.string.login_sign_up_button_2))
-                                    }
-                                },
-                            )
-                        }
+                        LoginButton(onClick = viewModel::onClickToLogin)
+                        RegisterButton(onClick = viewModel::onClickToSignUp)
                     }
                 }
             }
@@ -161,7 +111,64 @@ fun LoginScreen(
 }
 
 @Composable
-fun ErrorTextField(
+private fun ColumnScope.AppLogo() {
+    Icon(
+        contentDescription = "Logo",
+        modifier = Modifier
+            .wrapContentHeight()
+            .fillMaxWidth()
+            .align(Alignment.CenterHorizontally),
+        painter = painterResource(id = R.drawable.ic_logo),
+        tint = Color.White
+    )
+}
+
+@Composable
+private fun UsernameTextField(
+    onValueChange: (String) -> Unit,
+    value: String,
+    validationState: InputValidationState,
+    hasError: Boolean
+) {
+    OutlinedTextField(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = paddingSmall)
+            .testTag(LoginTestTags.USERNAME_FIELD),
+        value = value,
+        onValueChange = onValueChange,
+        label = { Text(stringResource(R.string.login_username_hint)) },
+        isError = hasError,
+        supportingText = {
+            ErrorTextField(inputValidation = validationState)
+        }
+    )
+}
+
+@Composable
+private fun PasswordTextField(
+    onValueChange: (String) -> Unit,
+    value: String,
+    validationState: InputValidationState,
+    hasError: Boolean
+) {
+    OutlinedTextField(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = paddingSmall)
+            .testTag(LoginTestTags.PASSWORD_FIELD),
+        value = value,
+        onValueChange = onValueChange,
+        label = { Text(stringResource(R.string.login_password_hint)) },
+        isError = hasError,
+        supportingText = {
+            ErrorTextField(inputValidation = validationState)
+        }
+    )
+}
+
+@Composable
+private fun ErrorTextField(
     modifier: Modifier = Modifier,
     inputValidation: InputValidationState,
 ) {
@@ -175,6 +182,45 @@ fun ErrorTextField(
         }
 
         InputValidationState.ValidField -> Unit
+    }
+}
+
+@Composable
+private fun LoginButton(onClick: () -> Unit) {
+    PrimaryButton(
+        onClick = onClick,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(
+                start = paddingSmall,
+                end = paddingSmall,
+                top = paddingSmall
+            )
+            .testTag(LoginTestTags.LOGIN_BUTTON)
+    ) {
+        Text(text = stringResource(R.string.login_button))
+    }
+}
+
+@Composable
+private fun RegisterButton(onClick: () -> Unit) {
+    SecondaryButton(
+        onClick = onClick,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = paddingSmall)
+    ) {
+        Text(
+            text = buildAnnotatedString {
+                withStyle(style = SpanStyle(fontWeight = FontWeight.Light)) {
+                    append(stringResource(R.string.login_sign_up_button_1))
+                }
+                append(" ")
+                withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                    append(stringResource(R.string.login_sign_up_button_2))
+                }
+            },
+        )
     }
 }
 
