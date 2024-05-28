@@ -18,37 +18,28 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.Re
 @Composable
 fun RegisterFlow(parentNavigator: FlowNavigator) {
 
-    val navControllerBottomBar = rememberNavController()
-    val flowNavigator: FlowNavigator = FlowNavigatorImpl(navControllerBottomBar, parentNavigator)
+    val navControllerRegisterFlow = rememberNavController()
+    val registerFlowNavigator: FlowNavigator = FlowNavigatorImpl(
+        navControllerRegisterFlow,
+        parentNavigator
+    )
     val scopedViewModelStore = remember { ScopedViewModelStoreOwner() }
 
     NavHost(
-        navController = flowNavigator.navController,
+        navController = registerFlowNavigator.navController,
         startDestination = NestedRoutes.registerNameRoute.name,
     ) {
         composable(NestedRoutes.registerNameRoute.name) {
-            RegisterNameScreen(
-                flowNavigator,
-                viewModel(scopedViewModelStore)
-            )
+            RegisterNameScreen(registerFlowNavigator, viewModel(scopedViewModelStore))
         }
         composable(NestedRoutes.registerBirthdayRoute.name) {
-            RegisterBirthdayScreen(
-                flowNavigator,
-                viewModel(scopedViewModelStore)
-            )
+            RegisterBirthdayScreen(registerFlowNavigator, viewModel(scopedViewModelStore))
         }
         composable(NestedRoutes.registerDocumentRoute.name) {
-            RegisterDocumentScreen(
-                flowNavigator,
-                viewModel(scopedViewModelStore)
-            )
+            RegisterDocumentScreen(registerFlowNavigator, viewModel(scopedViewModelStore))
         }
         composable(NestedRoutes.registerAddressRoute.name) {
-            RegisterAddressScreen(
-                flowNavigator,
-                viewModel(scopedViewModelStore)
-            )
+            RegisterAddressScreen(registerFlowNavigator, viewModel(scopedViewModelStore))
         }
     }
 }
