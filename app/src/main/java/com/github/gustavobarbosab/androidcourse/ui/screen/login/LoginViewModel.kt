@@ -7,7 +7,7 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.FieldValid
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.InputValidationState
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.InputValidationState.InvalidField
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginUiState
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.RegisterRoute
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.RegisterParentFlowRoute
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -77,7 +77,7 @@ class LoginViewModel : ViewModel() {
 
     fun onClickToSignUp() {
         _feedbackState.value = LoginFeedbackResource.SignUp
-        _navigationState.value = RegisterRoute
+        _navigationState.value = RegisterParentFlowRoute
     }
 
     fun snackBarShown() {

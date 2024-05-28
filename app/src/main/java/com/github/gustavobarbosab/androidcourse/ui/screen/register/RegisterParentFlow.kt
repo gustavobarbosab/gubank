@@ -9,11 +9,11 @@ import androidx.navigation.compose.rememberNavController
 import com.github.gustavobarbosab.androidcourse.ui.common.ScopedViewModelStoreOwner
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigatorImpl
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.RegisterNestedRoutes
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.address.RegisterAddressScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthday.RegisterBirthdayScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.document.RegisterDocumentScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.name.RegisterNameScreen
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.RegisterRoute.NestedRoutes
 
 @Composable
 fun RegisterParentFlow(parentNavigator: FlowNavigator) {
@@ -27,18 +27,18 @@ fun RegisterParentFlow(parentNavigator: FlowNavigator) {
 
     NavHost(
         navController = navControllerRegisterFlow,
-        startDestination = NestedRoutes.registerNameRoute.name,
+        startDestination = RegisterNestedRoutes.registerNameRoute.name,
     ) {
-        composable(NestedRoutes.registerNameRoute.name) {
+        composable(RegisterNestedRoutes.registerNameRoute.name) {
             RegisterNameScreen(registerFlowNavigator, viewModel(scopedViewModelStore))
         }
-        composable(NestedRoutes.registerBirthdayRoute.name) {
+        composable(RegisterNestedRoutes.registerBirthdayRoute.name) {
             RegisterBirthdayScreen(registerFlowNavigator, viewModel(scopedViewModelStore))
         }
-        composable(NestedRoutes.registerDocumentRoute.name) {
+        composable(RegisterNestedRoutes.registerDocumentRoute.name) {
             RegisterDocumentScreen(registerFlowNavigator, viewModel(scopedViewModelStore))
         }
-        composable(NestedRoutes.registerAddressRoute.name) {
+        composable(RegisterNestedRoutes.registerAddressRoute.name) {
             RegisterAddressScreen(registerFlowNavigator, viewModel(scopedViewModelStore))
         }
     }

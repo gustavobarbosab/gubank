@@ -8,7 +8,7 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterParen
 fun NavGraphBuilder.registerGraph(
     parentNavigator: FlowNavigator
 ) {
-    composable(RegisterRoute.name) {
+    composable(RegisterParentFlowRoute.name) {
         RegisterParentFlow(parentNavigator)
     }
 }
