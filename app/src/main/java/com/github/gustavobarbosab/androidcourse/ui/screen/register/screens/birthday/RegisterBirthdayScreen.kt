@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.PrimaryButton
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.RegisterParentFlowRoute
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.RegisterNestedRoutes
 
 @Composable
 fun RegisterBirthdayScreen(
@@ -30,7 +30,9 @@ fun RegisterBirthdayScreen(
             .background(Color.White)
     ) {
         Text(text = textState.value)
-        PrimaryButton(onClick = { flowNavigator.navigate(RegisterParentFlowRoute.NestedRoutes.registerDocumentRoute) }) {
+        PrimaryButton(onClick = {
+            flowNavigator.navigate(RegisterNestedRoutes.registerDocumentRoute)
+        }) {
             Text(text = "Continuar")
         }
     }
