@@ -3,19 +3,16 @@ package com.github.gustavobarbosab.androidcourse.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.github.gustavobarbosab.androidcourse.ui.navigation.route.NavigationRoute
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
-import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.AppNavigator
-import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.AppNavigatorImpl
-import com.github.gustavobarbosab.androidcourse.ui.screen.home.homeGraph
-import com.github.gustavobarbosab.androidcourse.ui.screen.login.loginGraph
+import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
+import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigatorImpl
+import com.github.gustavobarbosab.androidcourse.ui.screen.home.navigation.homeGraph
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.navigation.LoginRoute
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.navigation.loginGraph
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.registerGraph
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,13 +20,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             AndroidCourseTheme {
                 val navController = rememberNavController()
-                val appNavigator = remember<AppNavigator> { AppNavigatorImpl(navController) }
+                val appNavigator = remember<FlowNavigator> { FlowNavigatorImpl(navController) }
+
                 NavHost(
                     navController = navController,
-                    startDestination = NavigationRoute.Login.name
+                    startDestination = LoginRoute.name
                 ) {
                     homeGraph(appNavigator)
                     loginGraph(appNavigator)
+                    registerGraph(appNavigator)
                 }
             }
         }

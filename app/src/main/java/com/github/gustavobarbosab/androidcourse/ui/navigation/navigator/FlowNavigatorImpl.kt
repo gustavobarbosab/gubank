@@ -1,11 +1,20 @@
 package com.github.gustavobarbosab.androidcourse.ui.navigation.navigator
 
-import androidx.navigation.NavController
+import androidx.lifecycle.ViewModelStoreOwner
+import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import com.github.gustavobarbosab.androidcourse.ui.navigation.route.NavigationRoute
 
-class AppNavigatorImpl(private val navController: NavController) : AppNavigator {
+class FlowNavigatorImpl(
+    override val navController: NavHostController,
+    var parentNavigator: FlowNavigator? = null
+) : FlowNavigator {
+
+    override val currentViewModelStoreOwner: ViewModelStoreOwner? =
+        navController.currentBackStackEntry
+
+    override val lastViewModelStore: ViewModelStoreOwner? = navController.currentBackStackEntry
 
     override fun navigate(
         route: NavigationRoute,

@@ -1,11 +1,13 @@
 package com.github.gustavobarbosab.androidcourse.ui.screen.login
 
 import androidx.lifecycle.ViewModel
+import com.github.gustavobarbosab.androidcourse.ui.navigation.route.NavigationRoute
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginFeedbackResource
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.FieldValidator
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.InputValidationState
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.InputValidationState.InvalidField
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginUiState
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.RegisterRoute
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -19,6 +21,10 @@ class LoginViewModel : ViewModel() {
     private var _feedbackState = MutableStateFlow<LoginFeedbackResource?>(null)
     val feedbackState
         get() = _feedbackState.asStateFlow()
+
+    private var _navigationState = MutableStateFlow<NavigationRoute?>(null)
+    val navigationState
+        get() = _navigationState.asStateFlow()
 
     private val usernameValidator = FieldValidator(
         invalidFeedbackResource = LoginFeedbackResource.InvalidUsername
@@ -71,9 +77,14 @@ class LoginViewModel : ViewModel() {
 
     fun onClickToSignUp() {
         _feedbackState.value = LoginFeedbackResource.SignUp
+        _navigationState.value = RegisterRoute
     }
 
     fun snackBarShown() {
         _feedbackState.value = null
+    }
+
+    fun navigationDone() {
+        _navigationState.value = null
     }
 }

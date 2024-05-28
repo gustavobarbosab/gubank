@@ -45,19 +45,20 @@ import com.github.gustavobarbosab.androidcourse.ui.common.theme.primaryLight
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.PrimaryButton
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.RoundedCard
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.SecondaryButton
-import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.AppNavigator
-import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.AppNavigatorImpl
+import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
+import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigatorImpl
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.InputValidationState
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginTestTags
 import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(
-    navigator: AppNavigator,
+    navigator: FlowNavigator,
     viewModel: LoginViewModel = viewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
     val snackBarState by viewModel.feedbackState.collectAsState()
+    val navigationState by viewModel.navigationState.collectAsState()
     val snackBarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
@@ -69,6 +70,12 @@ fun LoginScreen(
             snackBarHostState.showSnackbar(message)
             viewModel.snackBarShown()
         }
+    }
+
+    LaunchedEffect(navigationState) {
+        val route = navigationState ?: return@LaunchedEffect
+        navigator.navigate(route)
+        viewModel.navigationDone()
     }
 
     Scaffold(snackbarHost = { SnackbarHost(hostState = snackBarHostState) }) {
@@ -232,5 +239,5 @@ private fun RegisterButton(onClick: () -> Unit) {
 @Composable
 fun PreviewLogin() {
     val navController = rememberNavController()
-    LoginScreen(navigator = AppNavigatorImpl(navController))
+    LoginScreen(navigator = FlowNavigatorImpl(navController))
 }

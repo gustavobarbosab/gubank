@@ -7,9 +7,8 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
-import androidx.navigation.NavHostController
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
-import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.AppNavigator
+import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginTestTags
 import io.mockk.mockk
 import io.mockk.spyk
@@ -22,7 +21,7 @@ class LoginScreenTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    private val navController = mockk<AppNavigator>(relaxed = true)
+    private val navController = mockk<FlowNavigator>(relaxed = true)
     private val viewModel = spyk(LoginViewModel())
 
     @Test
