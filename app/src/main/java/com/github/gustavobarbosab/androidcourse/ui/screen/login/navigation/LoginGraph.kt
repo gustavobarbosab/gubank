@@ -5,7 +5,7 @@ import androidx.navigation.compose.composable
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.LoginScreen
 
-fun NavGraphBuilder.loginGraph(parentNavigator: FlowNavigator) {
+fun NavGraphBuilder.loginParentGraph(parentNavigator: FlowNavigator) {
     composable(LoginRoute.name) {
         LoginScreen(parentNavigator)
     }

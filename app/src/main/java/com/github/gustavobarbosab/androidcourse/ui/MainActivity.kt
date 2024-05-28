@@ -9,10 +9,10 @@ import androidx.navigation.compose.rememberNavController
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigatorImpl
-import com.github.gustavobarbosab.androidcourse.ui.screen.home.navigation.homeGraph
+import com.github.gustavobarbosab.androidcourse.ui.screen.home.navigation.homeParentGraph
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.navigation.LoginRoute
-import com.github.gustavobarbosab.androidcourse.ui.screen.login.navigation.loginGraph
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.registerGraph
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.navigation.loginParentGraph
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.registerParentGraph
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,9 +26,9 @@ class MainActivity : ComponentActivity() {
                     navController = navController,
                     startDestination = LoginRoute.name
                 ) {
-                    homeGraph(parentNavigator)
-                    loginGraph(parentNavigator)
-                    registerGraph(parentNavigator)
+                    homeParentGraph(parentNavigator)
+                    loginParentGraph(parentNavigator)
+                    registerParentGraph(parentNavigator)
                 }
             }
         }
