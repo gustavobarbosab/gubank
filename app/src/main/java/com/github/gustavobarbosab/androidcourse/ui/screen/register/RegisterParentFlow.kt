@@ -26,7 +26,7 @@ fun RegisterParentFlow(parentNavigator: FlowNavigator) {
     val scopedViewModelStore = remember { ScopedViewModelStoreOwner() }
 
     NavHost(
-        navController = registerFlowNavigator.navController,
+        navController = navControllerRegisterFlow,
         startDestination = NestedRoutes.registerNameRoute.name,
     ) {
         composable(NestedRoutes.registerNameRoute.name) {

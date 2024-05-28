@@ -31,7 +31,7 @@ fun RegisterAddressScreen(
             .background(Color.White)
     ) {
         Text(text = textState.value)
-        PrimaryButton(onClick = { }) {
+        PrimaryButton(onClick = { flowNavigator.parentNavigator?.navigateUp() }) {
             Text(text = "Concluir")
         }
     }
