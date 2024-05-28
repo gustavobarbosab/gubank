@@ -34,7 +34,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.github.gustavobarbosab.androidcourse.R
 import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingBig
@@ -52,7 +52,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(
-    navController: NavHostController,
+    navController: NavController,
     viewModel: LoginViewModel = viewModel()
 ) {
     val state by viewModel.uiState.collectAsState()

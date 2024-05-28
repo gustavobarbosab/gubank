@@ -8,12 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.github.gustavobarbosab.androidcourse.ui.navigation.NavigationRoute
-import com.github.gustavobarbosab.androidcourse.ui.screen.home.HomeScreen
-import com.github.gustavobarbosab.androidcourse.ui.screen.login.LoginScreen
+import com.github.gustavobarbosab.androidcourse.ui.navigation.route.NavigationRoute
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
+import com.github.gustavobarbosab.androidcourse.ui.screen.home.homeGraph
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.loginGraph
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,13 +20,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             AndroidCourseTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = NavigationRoute.Login.route ) {
-                    composable(NavigationRoute.Login.route) {
-                        LoginScreen(navController)
-                    }
-                    composable(NavigationRoute.Home.route) {
-                        HomeScreen(navController)
-                    }
+                NavHost(
+                    navController = navController,
+                    startDestination = NavigationRoute.Login.name
+                ) {
+                    homeGraph(navController)
+                    loginGraph(navController)
                 }
             }
         }
