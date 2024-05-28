@@ -34,7 +34,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.github.gustavobarbosab.androidcourse.R
 import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingBig
@@ -46,13 +45,15 @@ import com.github.gustavobarbosab.androidcourse.ui.common.theme.primaryLight
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.PrimaryButton
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.RoundedCard
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.SecondaryButton
+import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.AppNavigator
+import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.AppNavigatorImpl
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.InputValidationState
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginTestTags
 import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(
-    navController: NavController,
+    navigator: AppNavigator,
     viewModel: LoginViewModel = viewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
@@ -231,5 +232,5 @@ private fun RegisterButton(onClick: () -> Unit) {
 @Composable
 fun PreviewLogin() {
     val navController = rememberNavController()
-    LoginScreen(navController = navController)
+    LoginScreen(navigator = AppNavigatorImpl(navController))
 }

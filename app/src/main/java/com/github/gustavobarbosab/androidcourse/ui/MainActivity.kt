@@ -5,12 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.github.gustavobarbosab.androidcourse.ui.navigation.route.NavigationRoute
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
+import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.AppNavigator
+import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.AppNavigatorImpl
 import com.github.gustavobarbosab.androidcourse.ui.screen.home.homeGraph
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.loginGraph
 
@@ -20,12 +23,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             AndroidCourseTheme {
                 val navController = rememberNavController()
+                val appNavigator = remember<AppNavigator> { AppNavigatorImpl(navController) }
                 NavHost(
                     navController = navController,
                     startDestination = NavigationRoute.Login.name
                 ) {
-                    homeGraph(navController)
-                    loginGraph(navController)
+                    homeGraph(appNavigator)
+                    loginGraph(appNavigator)
                 }
             }
         }
