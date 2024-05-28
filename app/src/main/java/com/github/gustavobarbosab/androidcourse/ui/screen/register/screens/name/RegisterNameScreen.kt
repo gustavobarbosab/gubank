@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.screen.register.birthday
+package com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.name
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -15,16 +15,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.PrimaryButton
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.RegisterRoute
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.RegisterRoute.NestedRoutes
 
 @Composable
-fun RegisterBirthdayScreen(
+fun RegisterNameScreen(
     flowNavigator: FlowNavigator,
     registerFlowViewModel: RegisterFlowViewModel
 ) {
     val textState = registerFlowViewModel.myTextState.collectAsState()
     LaunchedEffect(Unit) {
-        registerFlowViewModel.updateShared("Aniversário")
+        registerFlowViewModel.updateShared("Nome")
     }
     Column(
         Modifier
@@ -32,7 +32,7 @@ fun RegisterBirthdayScreen(
             .background(Color.White)
     ) {
         Text(text = textState.value)
-        PrimaryButton(onClick = { flowNavigator.navigate(RegisterRoute.NestedRoutes.registerDocumentRoute) }) {
+        PrimaryButton(onClick = { flowNavigator.navigate(NestedRoutes.registerBirthdayRoute) }) {
             Text(text = "Continuar")
         }
     }
@@ -40,13 +40,13 @@ fun RegisterBirthdayScreen(
 
 @Preview(device = "id:Nexus 4")
 @Composable
-private fun RegisterBirthdayScreenPreview() {
+private fun RegisterNamePreview() {
 //    val navController = rememberNavController()
 //    val scopedViewModelStoreOwner = scopedViewModelStoreOwner()
 //    AndroidCourseTheme {
-//        RegisterBirthdayScreen(
+//        RegisterNameScreen(
 //            appNavigator = AppNavigatorImpl(navController),
-//            registerFlowViewModel = RegisterFlowViewModel.getInstance(scopedViewModelStoreOwner)
+//            registerFlowViewModel = navController
 //        )
 //    }
 }

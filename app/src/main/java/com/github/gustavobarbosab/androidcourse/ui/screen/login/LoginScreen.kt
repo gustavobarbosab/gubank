@@ -53,7 +53,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(
-    navigator: FlowNavigator,
+    parentNavigator: FlowNavigator,
     viewModel: LoginViewModel = viewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
@@ -74,7 +74,7 @@ fun LoginScreen(
 
     LaunchedEffect(navigationState) {
         val route = navigationState ?: return@LaunchedEffect
-        navigator.navigate(route)
+        parentNavigator.navigate(route)
         viewModel.navigationDone()
     }
 
@@ -239,5 +239,5 @@ private fun RegisterButton(onClick: () -> Unit) {
 @Composable
 fun PreviewLogin() {
     val navController = rememberNavController()
-    LoginScreen(navigator = FlowNavigatorImpl(navController))
+    LoginScreen(parentNavigator = FlowNavigatorImpl(navController))
 }

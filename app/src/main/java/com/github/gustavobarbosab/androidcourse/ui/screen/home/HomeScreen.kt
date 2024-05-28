@@ -4,6 +4,6 @@ import androidx.compose.runtime.Composable
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 
 @Composable
-fun HomeScreen(navigator: FlowNavigator) {
+fun HomeScreen(parentNavigator: FlowNavigator) {
 
 }

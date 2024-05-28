@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.screen
+package com.github.gustavobarbosab.androidcourse.ui.screen.register
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -9,14 +9,14 @@ import androidx.navigation.compose.rememberNavController
 import com.github.gustavobarbosab.androidcourse.ui.common.ScopedViewModelStoreOwner
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigatorImpl
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.address.RegisterAddressScreen
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.birthday.RegisterBirthdayScreen
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.document.RegisterDocumentScreen
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.name.RegisterNameScreen
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.address.RegisterAddressScreen
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthday.RegisterBirthdayScreen
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.document.RegisterDocumentScreen
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.name.RegisterNameScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.RegisterRoute.NestedRoutes
 
 @Composable
-fun RegisterFlow(parentNavigator: FlowNavigator) {
+fun RegisterParentFlow(parentNavigator: FlowNavigator) {
 
     val navControllerRegisterFlow = rememberNavController()
     val registerFlowNavigator: FlowNavigator = FlowNavigatorImpl(

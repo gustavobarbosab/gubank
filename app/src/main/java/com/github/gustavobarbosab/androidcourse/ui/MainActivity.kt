@@ -20,15 +20,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             AndroidCourseTheme {
                 val navController = rememberNavController()
-                val appNavigator = remember<FlowNavigator> { FlowNavigatorImpl(navController) }
+                val parentNavigator = remember<FlowNavigator> { FlowNavigatorImpl(navController) }
 
                 NavHost(
                     navController = navController,
                     startDestination = LoginRoute.name
                 ) {
-                    homeGraph(appNavigator)
-                    loginGraph(appNavigator)
-                    registerGraph(appNavigator)
+                    homeGraph(parentNavigator)
+                    loginGraph(parentNavigator)
+                    registerGraph(parentNavigator)
                 }
             }
         }

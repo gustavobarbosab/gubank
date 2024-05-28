@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.screen.register.document
+package com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.document
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

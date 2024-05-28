@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.screen.register.name
+package com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.address
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -15,16 +15,15 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.PrimaryButton
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.RegisterRoute.NestedRoutes
 
 @Composable
-fun RegisterNameScreen(
+fun RegisterAddressScreen(
     flowNavigator: FlowNavigator,
     registerFlowViewModel: RegisterFlowViewModel
 ) {
     val textState = registerFlowViewModel.myTextState.collectAsState()
     LaunchedEffect(Unit) {
-        registerFlowViewModel.updateShared("Nome")
+        registerFlowViewModel.updateShared("Endereço")
     }
     Column(
         Modifier
@@ -32,21 +31,21 @@ fun RegisterNameScreen(
             .background(Color.White)
     ) {
         Text(text = textState.value)
-        PrimaryButton(onClick = { flowNavigator.navigate(NestedRoutes.registerBirthdayRoute) }) {
-            Text(text = "Continuar")
+        PrimaryButton(onClick = { }) {
+            Text(text = "Concluir")
         }
     }
 }
 
 @Preview(device = "id:Nexus 4")
 @Composable
-private fun RegisterNamePreview() {
+private fun RegisterAddressScreenPreview() {
 //    val navController = rememberNavController()
 //    val scopedViewModelStoreOwner = scopedViewModelStoreOwner()
 //    AndroidCourseTheme {
-//        RegisterNameScreen(
+//        RegisterAddressScreen(
 //            appNavigator = AppNavigatorImpl(navController),
-//            registerFlowViewModel = navController
+//            registerFlowViewModel = RegisterFlowViewModel.getInstance(scopedViewModelStoreOwner)
 //        )
 //    }
 }
