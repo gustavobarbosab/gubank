@@ -9,16 +9,11 @@ import kotlinx.coroutines.flow.update
 
 class RegisterFlowViewModel : ViewModel() {
 
-    private var _myTextState = MutableStateFlow<String>("")
+    private var _myTextState = MutableStateFlow("")
     val myTextState
         get() = _myTextState.asStateFlow()
 
     fun updateShared(sharedString: String) {
         _myTextState.update { "$it $sharedString" }
-    }
-
-    companion object {
-        fun getInstance(viewModelStore: ViewModelStoreOwner) =
-            ViewModelProvider(viewModelStore)[RegisterFlowViewModel::class.java]
     }
 }
