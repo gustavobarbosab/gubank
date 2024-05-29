@@ -16,8 +16,8 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowV
 
 @Composable
 fun RegisterAddressScreen(
-    flowNavigator: FlowNavigator,
-    registerFlowViewModel: RegisterFlowViewModel
+    registerFlowViewModel: RegisterFlowViewModel,
+    onFinishRegistration: () -> Unit
 ) {
     val textState = registerFlowViewModel.myTextState.collectAsState()
     LaunchedEffect(Unit) {
@@ -29,7 +29,7 @@ fun RegisterAddressScreen(
             .background(Color.White)
     ) {
         Text(text = textState.value)
-        PrimaryButton(onClick = { flowNavigator.parentNavigator?.navigateUp() }) {
+        PrimaryButton(onClick = onFinishRegistration) {
             Text(text = "Concluir")
         }
     }

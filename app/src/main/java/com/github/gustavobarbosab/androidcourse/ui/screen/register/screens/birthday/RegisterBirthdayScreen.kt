@@ -11,14 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.gustavobarbosab.androidcourse.ui.common.components.PrimaryButton
-import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.RegisterParentFlowRoute.NestedRoutes
 
 @Composable
 fun RegisterBirthdayScreen(
-    flowNavigator: FlowNavigator,
-    registerFlowViewModel: RegisterFlowViewModel
+    registerFlowViewModel: RegisterFlowViewModel,
+    navigateToDocumentScreen: () -> Unit
 ) {
     val textState = registerFlowViewModel.myTextState.collectAsState()
     LaunchedEffect(Unit) {
@@ -30,9 +28,7 @@ fun RegisterBirthdayScreen(
             .background(Color.White)
     ) {
         Text(text = textState.value)
-        PrimaryButton(onClick = {
-            flowNavigator.navigate(NestedRoutes.registerDocumentRoute)
-        }) {
+        PrimaryButton(onClick = navigateToDocumentScreen) {
             Text(text = "Continuar")
         }
     }

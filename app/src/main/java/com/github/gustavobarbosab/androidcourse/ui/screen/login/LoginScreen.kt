@@ -1,6 +1,5 @@
 package com.github.gustavobarbosab.androidcourse.ui.screen.login
 
-import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -32,30 +31,26 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.compose.rememberNavController
 import com.github.gustavobarbosab.androidcourse.R
+import com.github.gustavobarbosab.androidcourse.ui.common.components.ErrorTextField
+import com.github.gustavobarbosab.androidcourse.ui.common.components.InputValidationState
+import com.github.gustavobarbosab.androidcourse.ui.common.components.IsolationColumn
+import com.github.gustavobarbosab.androidcourse.ui.common.components.PrimaryButton
+import com.github.gustavobarbosab.androidcourse.ui.common.components.RoundedCard
+import com.github.gustavobarbosab.androidcourse.ui.common.components.SecondaryButton
 import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingBig
 import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingMedium
 import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingSmall
 import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingTiny
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.primaryLight
-import com.github.gustavobarbosab.androidcourse.ui.common.components.ErrorTextField
-import com.github.gustavobarbosab.androidcourse.ui.common.components.InputValidationState
-import com.github.gustavobarbosab.androidcourse.ui.common.components.PrimaryButton
-import com.github.gustavobarbosab.androidcourse.ui.common.components.RoundedCard
-import com.github.gustavobarbosab.androidcourse.ui.common.components.SecondaryButton
-import com.github.gustavobarbosab.androidcourse.ui.common.components.IsolationColumn
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
-import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigatorImpl
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginTestTags
 import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(
     parentNavigator: FlowNavigator,
-    viewModel: LoginViewModel = viewModel()
+    viewModel: LoginViewModel
 ) {
     val usernameFieldState by viewModel.usernameState.collectAsState()
     val passwordFieldState by viewModel.passwordState.collectAsState()
@@ -221,12 +216,12 @@ private fun RegisterButton(onClick: () -> Unit) {
     }
 }
 
-@Preview(
-    device = "spec:id=reference_phone,shape=Normal,width=411,height=891,unit=dp,dpi=420",
-    uiMode = Configuration.UI_MODE_NIGHT_YES, backgroundColor = 0xFF282235
-)
-@Composable
-fun PreviewLogin() {
-    val navController = rememberNavController()
-    LoginScreen(parentNavigator = FlowNavigatorImpl(navController))
-}
+//@Preview(
+//    device = "spec:id=reference_phone,shape=Normal,width=411,height=891,unit=dp,dpi=420",
+//    uiMode = Configuration.UI_MODE_NIGHT_YES, backgroundColor = 0xFF282235
+//)
+//@Composable
+//fun PreviewLogin() {
+//    val navController = rememberNavController()
+//    LoginScreen(parentNavigator = FlowNavigatorImpl(navController))
+//}

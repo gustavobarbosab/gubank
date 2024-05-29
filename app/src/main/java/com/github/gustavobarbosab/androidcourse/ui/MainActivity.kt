@@ -5,14 +5,17 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigatorImpl
-import com.github.gustavobarbosab.androidcourse.ui.screen.home.navigation.homeParentGraph
-import com.github.gustavobarbosab.androidcourse.ui.screen.login.navigation.LoginRoute
-import com.github.gustavobarbosab.androidcourse.ui.screen.login.navigation.loginParentGraph
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.registerParentGraph
+import com.github.gustavobarbosab.androidcourse.ui.screen.home.HomeDestination
+import com.github.gustavobarbosab.androidcourse.ui.screen.home.HomeRoute
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.LoginDestination
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.LoginRoute
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterParentFlowDestination
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterRoute
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,11 +27,17 @@ class MainActivity : ComponentActivity() {
 
                 NavHost(
                     navController = navController,
-                    startDestination = LoginRoute.name
+                    startDestination = LoginDestination.route
                 ) {
-                    homeParentGraph(parentNavigator)
-                    loginParentGraph(parentNavigator)
-                    registerParentGraph(parentNavigator)
+                    composable(HomeDestination.route) {
+                        HomeRoute(parentNavigator)
+                    }
+                    composable(LoginDestination.route) {
+                        LoginRoute(parentNavigator)
+                    }
+                    composable(RegisterParentFlowDestination.route) {
+                        RegisterRoute(parentNavigator)
+                    }
                 }
             }
         }
