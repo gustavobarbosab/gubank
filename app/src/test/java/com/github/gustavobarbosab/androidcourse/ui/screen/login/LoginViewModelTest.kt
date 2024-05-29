@@ -1,6 +1,6 @@
 package com.github.gustavobarbosab.androidcourse.ui.screen.login
 
-import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.InputValidationState
+import com.github.gustavobarbosab.androidcourse.ui.common.widgets.InputValidationState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
@@ -19,13 +19,21 @@ class LoginViewModelTest {
     fun `when the user click to login and the fields are invalid`() = runTest {
         // WHEN
         viewModel.onClickToLogin()
-        val state = viewModel.uiState.first()
+
+        val usernameState = viewModel.usernameState.first()
+        val passwordState = viewModel.passwordState.first()
 
         // THEN
-        assertThat(state.username, emptyString())
-        assertThat(state.password, emptyString())
-        assertThat(state.usernameValidation, instanceOf(InputValidationState.InvalidField::class.java))
-        assertThat(state.passwordValidation, instanceOf(InputValidationState.InvalidField::class.java))
+        assertThat(usernameState.value, emptyString())
+        assertThat(
+            usernameState.validation,
+            instanceOf(InputValidationState.InvalidField::class.java)
+        )
+        assertThat(passwordState.value, emptyString())
+        assertThat(
+            passwordState.validation,
+            instanceOf(InputValidationState.InvalidField::class.java)
+        )
     }
 
     @Test
@@ -35,13 +43,21 @@ class LoginViewModelTest {
 
         // WHEN
         viewModel.onClickToLogin()
-        val state = viewModel.uiState.first()
+
+        val usernameState = viewModel.usernameState.first()
+        val passwordState = viewModel.passwordState.first()
 
         // THEN
-        assertThat(state.username, equalTo("teste@aa.com"))
-        assertThat(state.password, emptyString())
-        assertThat(state.usernameValidation, instanceOf(InputValidationState.ValidField::class.java))
-        assertThat(state.passwordValidation, instanceOf(InputValidationState.InvalidField::class.java))
+        assertThat(usernameState.value, equalTo("teste@aa.com"))
+        assertThat(passwordState.value, emptyString())
+        assertThat(
+            usernameState.validation,
+            instanceOf(InputValidationState.ValidField::class.java)
+        )
+        assertThat(
+            passwordState.validation,
+            instanceOf(InputValidationState.InvalidField::class.java)
+        )
     }
 
     @Test
@@ -51,13 +67,21 @@ class LoginViewModelTest {
 
         // WHEN
         viewModel.onClickToLogin()
-        val state = viewModel.uiState.first()
+
+        val usernameState = viewModel.usernameState.first()
+        val passwordState = viewModel.passwordState.first()
 
         // THEN
-        assertThat(state.username, emptyString())
-        assertThat(state.password, equalTo("teste"))
-        assertThat(state.usernameValidation, instanceOf(InputValidationState.InvalidField::class.java))
-        assertThat(state.passwordValidation, instanceOf(InputValidationState.ValidField::class.java))
+        assertThat(usernameState.value, emptyString())
+        assertThat(passwordState.value, equalTo("teste"))
+        assertThat(
+            usernameState.validation,
+            instanceOf(InputValidationState.InvalidField::class.java)
+        )
+        assertThat(
+            passwordState.validation,
+            instanceOf(InputValidationState.ValidField::class.java)
+        )
     }
 
     @Test
@@ -68,12 +92,20 @@ class LoginViewModelTest {
 
         // WHEN
         viewModel.onClickToLogin()
-        val state = viewModel.uiState.first()
+
+        val usernameState = viewModel.usernameState.first()
+        val passwordState = viewModel.passwordState.first()
 
         // THEN
-        assertThat(state.username, equalTo("teste@aa.com"))
-        assertThat(state.password, equalTo("teste"))
-        assertThat(state.usernameValidation, instanceOf(InputValidationState.ValidField::class.java))
-        assertThat(state.passwordValidation, instanceOf(InputValidationState.ValidField::class.java))
+        assertThat(usernameState.value, equalTo("teste@aa.com"))
+        assertThat(passwordState.value, equalTo("teste"))
+        assertThat(
+            usernameState.validation,
+            instanceOf(InputValidationState.ValidField::class.java)
+        )
+        assertThat(
+            passwordState.validation,
+            instanceOf(InputValidationState.ValidField::class.java)
+        )
     }
 }

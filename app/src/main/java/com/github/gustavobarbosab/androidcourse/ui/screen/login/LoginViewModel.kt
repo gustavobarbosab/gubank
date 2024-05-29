@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import com.github.gustavobarbosab.androidcourse.ui.navigation.route.NavigationRoute
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginFeedbackResource
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.FieldValidator
-import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.InputValidationState
-import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.InputValidationState.InvalidField
-import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginUiState
+import com.github.gustavobarbosab.androidcourse.ui.common.widgets.InputValidationState
+import com.github.gustavobarbosab.androidcourse.ui.common.widgets.InputValidationState.InvalidField
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.TextInputState
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.RegisterParentFlowRoute
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,9 +14,13 @@ import kotlinx.coroutines.flow.update
 
 class LoginViewModel : ViewModel() {
 
-    private var _uiState = MutableStateFlow(LoginUiState.initialState())
-    val uiState
-        get() = _uiState.asStateFlow()
+    private var _usernameState = MutableStateFlow(TextInputState.initialState())
+    val usernameState
+        get() = _usernameState.asStateFlow()
+
+    private var _passwordState = MutableStateFlow(TextInputState.initialState())
+    val passwordState
+        get() = _passwordState.asStateFlow()
 
     private var _feedbackState = MutableStateFlow<LoginFeedbackResource?>(null)
     val feedbackState
@@ -39,34 +43,29 @@ class LoginViewModel : ViewModel() {
     }
 
     fun usernameChanged(value: String) {
-        this._uiState.update {
-            it.copy(
-                username = value,
-                usernameValidation = InputValidationState.ValidField
+        this._usernameState.update {
+            TextInputState(
+                value = value,
+                validation = InputValidationState.ValidField
             )
         }
     }
 
     fun passwordChanged(value: String) {
-        this._uiState.update {
-            it.copy(
-                password = value,
-                passwordValidation = InputValidationState.ValidField
+        this._passwordState.update {
+            TextInputState(
+                value = value,
+                validation = InputValidationState.ValidField
             )
         }
     }
 
     fun onClickToLogin() {
-        val currentScreenState = _uiState.value
-        val usernameState = usernameValidator.fieldState(currentScreenState.username)
-        val passwordState = passwordValidator.fieldState(currentScreenState.password)
+        val usernameState = usernameValidator.fieldState(_usernameState.value.value)
+        val passwordState = passwordValidator.fieldState(_passwordState.value.value)
 
-        _uiState.update {
-            it.copy(
-                usernameValidation = usernameState,
-                passwordValidation = passwordState
-            )
-        }
+        this._usernameState.update { it.copy(validation = usernameState) }
+        this._passwordState.update { it.copy(validation = passwordState) }
 
         if (usernameState is InvalidField || passwordState is InvalidField) {
             return

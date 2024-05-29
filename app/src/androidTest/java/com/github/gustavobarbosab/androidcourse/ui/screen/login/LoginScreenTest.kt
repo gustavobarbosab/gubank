@@ -54,8 +54,10 @@ class LoginScreenTest {
 
 
         verify {
-            viewModel.uiState
+            viewModel.usernameState
+            viewModel.passwordState
             viewModel.feedbackState
+            viewModel.navigationState
             viewModel.onClickToLogin()
         }
     }
@@ -87,8 +89,10 @@ class LoginScreenTest {
 
 
         verify {
-            viewModel.uiState
+            viewModel.usernameState
+            viewModel.passwordState
             viewModel.feedbackState
+            viewModel.navigationState
             viewModel.onClickToLogin()
         }
     }

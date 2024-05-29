@@ -40,14 +40,15 @@ import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingBig
 import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingMedium
 import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingSmall
 import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingTiny
-import com.github.gustavobarbosab.androidcourse.ui.common.theme.errorLight
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.primaryLight
+import com.github.gustavobarbosab.androidcourse.ui.common.widgets.ErrorTextField
+import com.github.gustavobarbosab.androidcourse.ui.common.widgets.InputValidationState
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.PrimaryButton
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.RoundedCard
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.SecondaryButton
+import com.github.gustavobarbosab.androidcourse.ui.common.widgets.TexFieldContainer
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigatorImpl
-import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.InputValidationState
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginTestTags
 import kotlinx.coroutines.launch
 
@@ -56,7 +57,8 @@ fun LoginScreen(
     parentNavigator: FlowNavigator,
     viewModel: LoginViewModel = viewModel()
 ) {
-    val state by viewModel.uiState.collectAsState()
+    val usernameFieldState by viewModel.usernameState.collectAsState()
+    val passwordFieldState by viewModel.passwordState.collectAsState()
     val snackBarState by viewModel.feedbackState.collectAsState()
     val navigationState by viewModel.navigationState.collectAsState()
     val snackBarHostState = remember { SnackbarHostState() }
@@ -97,18 +99,23 @@ fun LoginScreen(
                         paddingHorizontal = paddingTiny,
                         paddingVertical = paddingBig,
                     ) {
-                        UsernameTextField(
-                            onValueChange = viewModel::usernameChanged,
-                            value = state.username,
-                            validationState = state.usernameValidation,
-                            hasError = state.isUsernameStateInvalid
-                        )
-                        PasswordTextField(
-                            onValueChange = viewModel::passwordChanged,
-                            value = state.password,
-                            validationState = state.passwordValidation,
-                            hasError = state.isPasswordStateInvalid
-                        )
+                        TexFieldContainer {
+                            UsernameTextField(
+                                onValueChange = viewModel::usernameChanged,
+                                value = usernameFieldState.value,
+                                validationState = usernameFieldState.validation,
+                                hasError = usernameFieldState.isStateInvalid
+                            )
+                        }
+                        TexFieldContainer {
+                            PasswordTextField(
+                                onValueChange = viewModel::passwordChanged,
+                                value = passwordFieldState.value,
+                                validationState = passwordFieldState.validation,
+                                hasError = passwordFieldState.isStateInvalid
+                            )
+                        }
+
                         LoginButton(onClick = viewModel::onClickToLogin)
                         RegisterButton(onClick = viewModel::onClickToSignUp)
                     }
@@ -117,6 +124,7 @@ fun LoginScreen(
         }
     }
 }
+
 
 @Composable
 private fun ColumnScope.AppLogo() {
@@ -138,19 +146,21 @@ private fun UsernameTextField(
     validationState: InputValidationState,
     hasError: Boolean
 ) {
-    OutlinedTextField(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = paddingSmall)
-            .testTag(LoginTestTags.USERNAME_FIELD),
-        value = value,
-        onValueChange = onValueChange,
-        label = { Text(stringResource(R.string.login_username_hint)) },
-        isError = hasError,
-        supportingText = {
-            ErrorTextField(inputValidation = validationState)
-        }
-    )
+    Column {
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = paddingSmall)
+                .testTag(LoginTestTags.USERNAME_FIELD),
+            value = value,
+            onValueChange = onValueChange,
+            label = { Text(stringResource(R.string.login_username_hint)) },
+            isError = hasError,
+            supportingText = {
+                ErrorTextField(inputValidation = validationState)
+            }
+        )
+    }
 }
 
 @Composable
@@ -160,36 +170,20 @@ private fun PasswordTextField(
     validationState: InputValidationState,
     hasError: Boolean
 ) {
-    OutlinedTextField(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = paddingSmall)
-            .testTag(LoginTestTags.PASSWORD_FIELD),
-        value = value,
-        onValueChange = onValueChange,
-        label = { Text(stringResource(R.string.login_password_hint)) },
-        isError = hasError,
-        supportingText = {
-            ErrorTextField(inputValidation = validationState)
-        }
-    )
-}
-
-@Composable
-private fun ErrorTextField(
-    modifier: Modifier = Modifier,
-    inputValidation: InputValidationState,
-) {
-    when (inputValidation) {
-        is InputValidationState.InvalidField -> {
-            Text(
-                modifier = modifier,
-                text = stringResource(id = inputValidation.feedbackResource.stringRes),
-                color = errorLight
-            )
-        }
-
-        InputValidationState.ValidField -> Unit
+    Column {
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = paddingSmall)
+                .testTag(LoginTestTags.PASSWORD_FIELD),
+            value = value,
+            onValueChange = onValueChange,
+            label = { Text(stringResource(R.string.login_password_hint)) },
+            isError = hasError,
+            supportingText = {
+                ErrorTextField(inputValidation = validationState)
+            }
+        )
     }
 }
 
