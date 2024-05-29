@@ -14,7 +14,7 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.home.HomeDestination
 import com.github.gustavobarbosab.androidcourse.ui.screen.home.HomeRoute
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.LoginDestination
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.LoginRoute
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterParentFlowDestination
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterDestination
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterRoute
 
 class MainActivity : ComponentActivity() {
@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                     composable(LoginDestination.route) {
                         LoginRoute(parentNavigator)
                     }
-                    composable(RegisterParentFlowDestination.route) {
+                    composable(RegisterDestination.route) {
                         RegisterRoute(parentNavigator)
                     }
                 }
