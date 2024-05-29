@@ -11,12 +11,12 @@ class FlowNavigatorImpl(
 ) : FlowNavigator {
 
     override fun navigate(
-        route: Destination,
+        destination: Destination,
         navOptions: NavOptions?,
         navigatorExtras: Navigator.Extras?
     ) {
         navController.navigate(
-            route.route,
+            destination.route,
             navOptions,
             navigatorExtras
         )

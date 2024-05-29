@@ -8,7 +8,7 @@ interface FlowNavigator {
     val parentNavigator: FlowNavigator?
 
     fun navigate(
-        route: Destination,
+        destination: Destination,
         navOptions: NavOptions? = null,
         navigatorExtras: Navigator.Extras? = null
     )
