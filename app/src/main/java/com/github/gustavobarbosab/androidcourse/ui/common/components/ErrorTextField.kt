@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.common.widgets
+package com.github.gustavobarbosab.androidcourse.ui.common.components
 
 import androidx.annotation.StringRes
 import androidx.compose.material3.Text

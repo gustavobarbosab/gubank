@@ -1,6 +1,6 @@
 package com.github.gustavobarbosab.androidcourse.ui.screen.login.model
 
-import com.github.gustavobarbosab.androidcourse.ui.common.widgets.InputValidationState
+import com.github.gustavobarbosab.androidcourse.ui.common.components.InputValidationState
 
 data class TextInputState(
     var value: String,
