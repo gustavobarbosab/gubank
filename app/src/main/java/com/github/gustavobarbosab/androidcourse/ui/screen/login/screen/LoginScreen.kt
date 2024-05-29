@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.screen.login
+package com.github.gustavobarbosab.androidcourse.ui.screen.login.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -44,7 +44,7 @@ import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingSmall
 import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingTiny
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.primaryLight
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
-import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginTestTags
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.model.LoginTestTags
 import kotlinx.coroutines.launch
 
 @Composable

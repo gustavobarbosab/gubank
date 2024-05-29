@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.screen.login.model
+package com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.model
 
 object LoginTestTags {
     const val USERNAME_FIELD = "LOGIN_USERNAME_FIELD"

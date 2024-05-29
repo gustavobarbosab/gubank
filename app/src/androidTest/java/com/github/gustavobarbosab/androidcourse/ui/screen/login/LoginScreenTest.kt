@@ -9,7 +9,9 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
-import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginTestTags
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.LoginScreen
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.LoginViewModel
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.model.LoginTestTags
 import io.mockk.mockk
 import io.mockk.spyk
 import io.mockk.verify

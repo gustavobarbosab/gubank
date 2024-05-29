@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.screen.home
+package com.github.gustavobarbosab.androidcourse.ui.screen.home.screen
 
 import androidx.compose.runtime.Composable
 import com.github.gustavobarbosab.androidcourse.ui.navigation.destination.Destination

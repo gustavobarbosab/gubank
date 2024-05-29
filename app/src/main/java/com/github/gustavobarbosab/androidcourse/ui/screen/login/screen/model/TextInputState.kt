@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.screen.login.model
+package com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.model
 
 import com.github.gustavobarbosab.androidcourse.ui.common.components.InputValidationState
 

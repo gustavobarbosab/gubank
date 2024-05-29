@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.github.gustavobarbosab.androidcourse.ui.navigation.destination.Destination
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.LoginScreen
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.LoginViewModel
 
 object LoginDestination : Destination {
     override val route: String = "LOGIN"

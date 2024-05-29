@@ -1,6 +1,7 @@
 package com.github.gustavobarbosab.androidcourse.ui.screen.login
 
 import com.github.gustavobarbosab.androidcourse.ui.common.components.InputValidationState
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.LoginViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
