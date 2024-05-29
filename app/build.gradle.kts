@@ -45,11 +45,9 @@ android {
     packaging {
         resources {
             excludes += mutableSetOf(
-                "/META-INF/{AL2.0,LGPL2.1}",
-                "META-INF/*"
+                "/META-INF/{AL2.0,LGPL2.1}"
             )
         }
-
     }
 
     @Suppress("UnstableApiUsage")
@@ -57,6 +55,12 @@ android {
         packaging {
             jniLibs {
                 useLegacyPackaging = true
+            }
+            resources {
+                excludes += mutableSetOf(
+                    "/META-INF/{AL2.0,LGPL2.1}",
+                    "META-INF/*"
+                )
             }
         }
     }
