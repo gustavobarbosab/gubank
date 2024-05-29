@@ -1,11 +1,11 @@
 package com.github.gustavobarbosab.androidcourse.ui.screen.login
 
 import androidx.lifecycle.ViewModel
-import com.github.gustavobarbosab.androidcourse.ui.navigation.route.NavigationRoute
-import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginFeedbackResource
-import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.FieldValidator
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.InputValidationState
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.InputValidationState.InvalidField
+import com.github.gustavobarbosab.androidcourse.ui.navigation.route.NavigationRoute
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.FieldValidator
+import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginFeedbackResource
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.TextInputState
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.RegisterParentFlowRoute
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -46,7 +46,7 @@ import com.github.gustavobarbosab.androidcourse.ui.common.widgets.InputValidatio
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.PrimaryButton
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.RoundedCard
 import com.github.gustavobarbosab.androidcourse.ui.common.widgets.SecondaryButton
-import com.github.gustavobarbosab.androidcourse.ui.common.widgets.TexFieldContainer
+import com.github.gustavobarbosab.androidcourse.ui.common.widgets.IsolationColumn
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigatorImpl
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.model.LoginTestTags
@@ -99,7 +99,7 @@ fun LoginScreen(
                         paddingHorizontal = paddingTiny,
                         paddingVertical = paddingBig,
                     ) {
-                        TexFieldContainer {
+                        IsolationColumn {
                             UsernameTextField(
                                 onValueChange = viewModel::usernameChanged,
                                 value = usernameFieldState.value,
@@ -107,7 +107,7 @@ fun LoginScreen(
                                 hasError = usernameFieldState.isStateInvalid
                             )
                         }
-                        TexFieldContainer {
+                        IsolationColumn {
                             PasswordTextField(
                                 onValueChange = viewModel::passwordChanged,
                                 value = passwordFieldState.value,
@@ -115,7 +115,6 @@ fun LoginScreen(
                                 hasError = passwordFieldState.isStateInvalid
                             )
                         }
-
                         LoginButton(onClick = viewModel::onClickToLogin)
                         RegisterButton(onClick = viewModel::onClickToSignUp)
                     }
@@ -146,21 +145,19 @@ private fun UsernameTextField(
     validationState: InputValidationState,
     hasError: Boolean
 ) {
-    Column {
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = paddingSmall)
-                .testTag(LoginTestTags.USERNAME_FIELD),
-            value = value,
-            onValueChange = onValueChange,
-            label = { Text(stringResource(R.string.login_username_hint)) },
-            isError = hasError,
-            supportingText = {
-                ErrorTextField(inputValidation = validationState)
-            }
-        )
-    }
+    OutlinedTextField(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = paddingSmall)
+            .testTag(LoginTestTags.USERNAME_FIELD),
+        value = value,
+        onValueChange = onValueChange,
+        label = { Text(stringResource(R.string.login_username_hint)) },
+        isError = hasError,
+        supportingText = {
+            ErrorTextField(inputValidation = validationState)
+        }
+    )
 }
 
 @Composable
@@ -170,21 +167,19 @@ private fun PasswordTextField(
     validationState: InputValidationState,
     hasError: Boolean
 ) {
-    Column {
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = paddingSmall)
-                .testTag(LoginTestTags.PASSWORD_FIELD),
-            value = value,
-            onValueChange = onValueChange,
-            label = { Text(stringResource(R.string.login_password_hint)) },
-            isError = hasError,
-            supportingText = {
-                ErrorTextField(inputValidation = validationState)
-            }
-        )
-    }
+    OutlinedTextField(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = paddingSmall)
+            .testTag(LoginTestTags.PASSWORD_FIELD),
+        value = value,
+        onValueChange = onValueChange,
+        label = { Text(stringResource(R.string.login_password_hint)) },
+        isError = hasError,
+        supportingText = {
+            ErrorTextField(inputValidation = validationState)
+        }
+    )
 }
 
 @Composable
