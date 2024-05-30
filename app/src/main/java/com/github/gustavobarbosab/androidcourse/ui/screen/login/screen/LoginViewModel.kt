@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.github.gustavobarbosab.androidcourse.ui.common.components.InputValidationState
 import com.github.gustavobarbosab.androidcourse.ui.common.components.InputValidationState.InvalidField
 import com.github.gustavobarbosab.androidcourse.ui.navigation.destination.Destination
+import com.github.gustavobarbosab.androidcourse.ui.navigation.viewmodel.NavigationState
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.model.FieldValidator
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.model.LoginFeedbackResource
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.model.TextInputState
@@ -12,7 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel : ViewModel(), NavigationState {
 
     private var _usernameState = MutableStateFlow(TextInputState.initialState())
     val usernameState
@@ -27,7 +28,7 @@ class LoginViewModel : ViewModel() {
         get() = _feedbackState.asStateFlow()
 
     private var _navigationState = MutableStateFlow<Destination?>(null)
-    val navigationState
+    override val state
         get() = _navigationState.asStateFlow()
 
     private val usernameValidator = FieldValidator(
@@ -83,7 +84,7 @@ class LoginViewModel : ViewModel() {
         _feedbackState.value = null
     }
 
-    fun navigationDone() {
+    override fun onNavigationDone() {
         _navigationState.value = null
     }
 }

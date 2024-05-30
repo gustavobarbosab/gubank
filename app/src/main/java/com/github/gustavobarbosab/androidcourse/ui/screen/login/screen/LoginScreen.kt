@@ -43,6 +43,7 @@ import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingMedium
 import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingSmall
 import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingTiny
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.primaryLight
+import com.github.gustavobarbosab.androidcourse.ui.navigation.compose.LaunchNavigation
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.model.LoginTestTags
 import kotlinx.coroutines.launch
@@ -55,7 +56,6 @@ fun LoginScreen(
     val usernameFieldState by viewModel.usernameState.collectAsState()
     val passwordFieldState by viewModel.passwordState.collectAsState()
     val snackBarState by viewModel.feedbackState.collectAsState()
-    val navigationState by viewModel.navigationState.collectAsState()
     val snackBarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
@@ -69,11 +69,10 @@ fun LoginScreen(
         }
     }
 
-    LaunchedEffect(navigationState) {
-        val route = navigationState ?: return@LaunchedEffect
-        parentNavigator.navigate(route)
-        viewModel.navigationDone()
-    }
+    LaunchNavigation(
+        navigationState = viewModel,
+        navigator = parentNavigator
+    )
 
     Scaffold(snackbarHost = { SnackbarHost(hostState = snackBarHostState) }) {
         Column(
