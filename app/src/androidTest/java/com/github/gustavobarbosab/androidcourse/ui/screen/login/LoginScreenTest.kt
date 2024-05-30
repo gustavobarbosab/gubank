@@ -59,7 +59,7 @@ class LoginScreenTest {
             viewModel.usernameState
             viewModel.passwordState
             viewModel.feedbackState
-            viewModel.navigationState
+            viewModel.destinationState
             viewModel.onClickToLogin()
         }
     }
@@ -94,7 +94,7 @@ class LoginScreenTest {
             viewModel.usernameState
             viewModel.passwordState
             viewModel.feedbackState
-            viewModel.navigationState
+            viewModel.destinationState
             viewModel.onClickToLogin()
         }
     }

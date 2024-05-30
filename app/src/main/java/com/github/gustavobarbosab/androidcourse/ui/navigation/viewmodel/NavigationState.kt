@@ -4,6 +4,6 @@ import com.github.gustavobarbosab.androidcourse.ui.navigation.destination.Destin
 import kotlinx.coroutines.flow.StateFlow
 
 interface NavigationState {
-    val state: StateFlow<Destination?>
+    val destinationState: StateFlow<Destination?>
     fun onNavigationDone()
 }

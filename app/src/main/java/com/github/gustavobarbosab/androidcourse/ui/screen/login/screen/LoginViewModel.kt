@@ -28,7 +28,7 @@ class LoginViewModel : ViewModel(), NavigationState {
         get() = _feedbackState.asStateFlow()
 
     private var _navigationState = MutableStateFlow<Destination?>(null)
-    override val state
+    override val destinationState
         get() = _navigationState.asStateFlow()
 
     private val usernameValidator = FieldValidator(

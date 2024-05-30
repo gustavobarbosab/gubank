@@ -12,7 +12,7 @@ fun LaunchNavigation(
     navigationState: NavigationState,
     navigator: FlowNavigator,
 ) {
-    val state by navigationState.state.collectAsState()
+    val state by navigationState.destinationState.collectAsState()
     LaunchedEffect(state) {
         val destination = state ?: return@LaunchedEffect
         navigator.navigate(destination)
