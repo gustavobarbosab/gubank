@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.github.gustavobarbosab.androidcourse.ui.common.components.InputValidationState
 import com.github.gustavobarbosab.androidcourse.ui.common.components.InputValidationState.InvalidField
 import com.github.gustavobarbosab.androidcourse.ui.navigation.destination.Destination
-import com.github.gustavobarbosab.androidcourse.ui.navigation.viewmodel.NavigationState
+import com.github.gustavobarbosab.androidcourse.ui.navigation.compose.NavigationState
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.model.FieldValidator
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.model.LoginFeedbackResource
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.model.TextInputState

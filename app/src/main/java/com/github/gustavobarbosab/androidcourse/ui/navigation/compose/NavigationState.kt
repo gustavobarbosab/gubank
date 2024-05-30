@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.navigation.viewmodel
+package com.github.gustavobarbosab.androidcourse.ui.navigation.compose
 
 import com.github.gustavobarbosab.androidcourse.ui.navigation.destination.Destination
 import kotlinx.coroutines.flow.StateFlow
