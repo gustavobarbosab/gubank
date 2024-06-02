@@ -35,17 +35,12 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.model.
 
 @Composable
 fun RegisterNameScreen(
-    parentViewModel: RegisterFlowViewModel,
     viewModel: RegisterNameViewModel,
     screenState: RegisterScreenState,
     onBackButtonClicked: () -> Unit,
     goToBirthdayScreen: () -> Unit
 ) {
     val inputState by viewModel.userName.collectAsState()
-
-    LaunchedEffect(Unit) {
-        viewModel.onValueChanged(parentViewModel.username)
-    }
 
     Column {
         AppToolbar(
@@ -83,12 +78,7 @@ fun RegisterNameScreen(
                         .fillMaxWidth()
                         .align(Alignment.Bottom),
                     onClick = {
-                        viewModel.onClickToContinue(
-                            whenTheFieldsAreValid = { username ->
-                                parentViewModel.username = username
-                                goToBirthdayScreen()
-                            }
-                        )
+                        viewModel.onClickToContinue(goToBirthdayScreen = goToBirthdayScreen)
                     }
                 ) {
                     Text(text = "Continuar")
@@ -99,12 +89,9 @@ fun RegisterNameScreen(
     }
 }
 
-
 @Preview(device = "id:Nexus 4")
 @Composable
 private fun RegisterNamePreview() {
-    val scopedViewModelStore = remember { ScopedViewModelStoreOwner() }
-    val parentViewModel = viewModel<RegisterFlowViewModel>(scopedViewModelStore)
     val viewModel = viewModel<RegisterNameViewModel>()
     val screenState = remember {
         RegisterScreenState(
@@ -116,7 +103,6 @@ private fun RegisterNamePreview() {
 
     AndroidCourseTheme {
         RegisterNameScreen(
-            parentViewModel,
             viewModel,
             screenState,
             {},

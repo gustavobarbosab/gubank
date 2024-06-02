@@ -2,6 +2,7 @@ package com.github.gustavobarbosab.androidcourse.ui.screen.register
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
@@ -14,6 +15,8 @@ import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavi
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigatorImpl
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterDestination.NestedDestination
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.model.RegisterScreenState
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepository
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepositoryImpl
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.address.RegisterAddressScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthday.RegisterBirthdayScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.document.RegisterDocumentScreen
@@ -53,22 +56,30 @@ fun RegisterRoute(parentNavigator: FlowNavigator) {
         )
     }
     val scopedViewModelStore = remember { ScopedViewModelStoreOwner() }
-    val sharedViewModel = viewModel<RegisterFlowViewModel>(scopedViewModelStore)
+    val repository: RegisterFlowRepository = remember {
+        RegisterFlowRepositoryImpl()
+    }
+    val sharedViewModel = viewModel<RegisterFlowViewModel>(
+        viewModelStoreOwner = scopedViewModelStore,
+        factory = RegisterFlowViewModel.provideFactory(repository)
+    )
+
 
     NavHost(
         navController = registerFlowNavController,
         startDestination = NestedDestination.registerNameRoute.route,
     ) {
         composable(NestedDestination.registerNameRoute.route) {
-            val viewModel: RegisterNameViewModel = viewModel()
+            val viewModel: RegisterNameViewModel = viewModel(
+                factory = RegisterNameViewModel.provideFactory(repository)
+            )
 
             val toolbar = stringResource(R.string.register_toolbar)
             val header = stringResource(R.string.register_name_header)
-            val hint = stringResource(R.string.register_toolbar)
+            val hint = stringResource(R.string.register_name_hint)
             val screenState = remember { RegisterScreenState(toolbar, header, hint) }
 
             RegisterNameScreen(
-                parentViewModel = sharedViewModel,
                 viewModel = viewModel,
                 screenState = screenState,
                 onBackButtonClicked = parentNavigator::navigateUp,
