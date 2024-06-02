@@ -9,6 +9,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.github.gustavobarbosab.androidcourse.R
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -80,6 +81,7 @@ fun AndroidCourseTheme(content: @Composable () -> Unit) {
             val window = (view.context as Activity).window
             window.statusBarColor = lightScheme.primary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
+            view.setBackgroundResource(R.color.white)
         }
     }
 
