@@ -3,9 +3,12 @@ package com.github.gustavobarbosab.androidcourse.ui.screen.register
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import com.github.gustavobarbosab.androidcourse.ui.common.components.InputValidationState
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.model.RegisterInputState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import java.util.Calendar
 
 class RegisterFlowViewModel : ViewModel() {
 
@@ -13,50 +16,44 @@ class RegisterFlowViewModel : ViewModel() {
     val myTextState
         get() = _myTextState.asStateFlow()
 
-    private var _userName = MutableStateFlow("")
-    val userName
-        get() = _userName.asStateFlow()
-
-    private var _userDocument = MutableStateFlow("")
-    val userDocument
-        get() = _userDocument.asStateFlow()
-
-    private var _userBirthday = MutableStateFlow("")
-    val userBirthday
-        get() = _userBirthday.asStateFlow()
-
-    private var _userAddress = MutableStateFlow("")
-    val userAddress
-        get() = _userAddress.asStateFlow()
+    var username = ""
+    var birthday: Calendar = Calendar.getInstance()
+    var document = ""
+    var street = ""
+    var district = ""
+    var number = ""
+    var city = ""
+    var cep = ""
 
     fun updateShared(sharedString: String) {
         _myTextState.update { "$it $sharedString" }
     }
 
-    fun saveUserName(userName: String) {
-        _userName.update { userName }
-    }
 
-    fun saveDocument(document: String) {
-        _userDocument.update { document }
-    }
-
-    fun saveBirthday(birthday: String) {
-        _userBirthday.update { birthday }
-    }
-
-    fun saveAddress(
-        cep: String,
-        street: String?,
-        district: String?,
-        city: String?,
-        number: String?
-    ) {
-        _userAddress.update {
-            val stringBuilder = StringBuilder()
-                .append(street)
-                .append(number)
-            "$street, $number - $district. $city"
-        }
-    }
+//
+//    fun saveAddress(
+//        cep: String,
+//        street: String?,
+//        district: String?,
+//        city: String?,
+//        number: String?
+//    ) {
+//        val valueToShow = StringBuilder()
+//            .append(street)
+//            .append(", ")
+//            .append(number)
+//            .append(" - ")
+//            .append(district)
+//            .append(". ")
+//            .append(city)
+//            .toString()
+//
+//        _userAddress.update {
+//            RegisterInputState(
+//                valueToShow,
+//                InputValidationState.ValidField
+//            )
+//
+//        }
+//    }
 }

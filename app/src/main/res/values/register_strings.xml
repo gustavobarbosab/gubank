@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="register_toolbar">Novo cadastro</string>
+    <string name="register_name_header">Informe seu nome completo para prosseguirmos com seu cadastro.</string>
+    <string name="register_name_hint">Nome completo</string>
     <string name="register_name_invalid_name">Insira um nome válido</string>
 </resources>
