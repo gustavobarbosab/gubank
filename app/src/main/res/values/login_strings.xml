@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_successful_logged">Login feito com sucesso</string>
+    <string name="login_sign_up">Efetuar Sign up</string>
+    <string name="login_invalid_password">Senha inválida</string>
+    <string name="login_invalid_username">Nome de usuário inválido</string>
+    <string name="login_sign_up_button_1">Não tem conta? </string>
+    <string name="login_sign_up_button_2">Cadastre-se</string>
+    <string name="login_button">Entrar</string>
+    <string name="login_password_hint">Senha</string>
+    <string name="login_username_hint">Usuário</string>
+</resources>
