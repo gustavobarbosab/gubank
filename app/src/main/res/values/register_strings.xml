@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="register_name_invalid_name">Insira um nome válido</string>
+</resources>
