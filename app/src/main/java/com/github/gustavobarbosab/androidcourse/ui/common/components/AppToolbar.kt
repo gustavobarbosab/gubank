@@ -26,8 +26,8 @@ import com.github.gustavobarbosab.androidcourse.ui.common.theme.primaryLight
 
 
 sealed class ToolbarIcon(val imageVector: ImageVector) {
-    data object Close : ToolbarIcon(Icons.AutoMirrored.Outlined.ArrowBack)
-    data object Back : ToolbarIcon(Icons.Outlined.Close)
+    data object Close : ToolbarIcon(Icons.Outlined.Close)
+    data object Back : ToolbarIcon(Icons.AutoMirrored.Outlined.ArrowBack)
 }
 
 @Composable
