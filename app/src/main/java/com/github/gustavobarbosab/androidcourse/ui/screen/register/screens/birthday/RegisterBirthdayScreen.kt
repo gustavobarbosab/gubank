@@ -15,6 +15,7 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.extens
 
 @Composable
 fun RegisterBirthdayScreen(
+    viewModel: RegisterBirthdayViewModel,
     sharedViewModel: RegisterFlowViewModel,
     navigateToDocumentScreen: () -> Unit
 ) {

@@ -41,7 +41,7 @@ fun RegisterNameScreen(
     ),
     sharedViewModel: RegisterFlowViewModel,
     viewModel: RegisterNameViewModel,
-    goToBirthdayScreen: () -> Unit
+    navigateToBirthdayScreen: () -> Unit
 ) {
     val inputState by viewModel.userName.collectAsState()
 
@@ -80,7 +80,7 @@ fun RegisterNameScreen(
                     .fillMaxWidth()
                     .align(Alignment.Bottom),
                 onClick = {
-                    viewModel.onClickToContinue(goToBirthdayScreen = goToBirthdayScreen)
+                    viewModel.onClickToContinue(goToBirthdayScreen = navigateToBirthdayScreen)
                 }
             ) {
                 Text(text = stringResource(id = R.string.register_name_button))

@@ -42,17 +42,4 @@ class RegisterNameViewModel(
         registerFlowRepository.name = usernameValue
         goToBirthdayScreen()
     }
-
-    companion object {
-        fun provideFactory(
-            repository: RegisterFlowRepository
-        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(
-                modelClass: Class<T>,
-                extras: CreationExtras
-            ): T {
-                return RegisterNameViewModel(repository) as T
-            }
-        }
-    }
 }

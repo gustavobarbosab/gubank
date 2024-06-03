@@ -5,23 +5,20 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.github.gustavobarbosab.androidcourse.R
 import com.github.gustavobarbosab.androidcourse.ui.common.ScopedViewModelStoreOwner
 import com.github.gustavobarbosab.androidcourse.ui.common.components.AppToolbar
-import com.github.gustavobarbosab.androidcourse.ui.common.components.ToolbarIcon
 import com.github.gustavobarbosab.androidcourse.ui.navigation.destination.Destination
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigatorImpl
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterDestination.NestedDestination
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModelFactory.provideFactory
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepository
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepositoryImpl
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.address.RegisterAddressScreen
@@ -102,20 +99,17 @@ private fun NavGraphBuilder.createRegisterNavGraph(
     repository: RegisterFlowRepository,
 ) {
     composable(NestedDestination.registerNameRoute.route) {
-        val viewModel: RegisterNameViewModel = viewModel(
-            factory = RegisterNameViewModel.provideFactory(repository)
-        )
-
         RegisterNameScreen(
-            viewModel = viewModel,
+            viewModel = viewModel(factory = provideFactory(repository)),
             sharedViewModel = sharedViewModel,
-            goToBirthdayScreen = {
+            navigateToBirthdayScreen = {
                 registerFlowNavigator.navigate(NestedDestination.registerBirthdayRoute)
             }
         )
     }
     composable(NestedDestination.registerBirthdayRoute.route) {
         RegisterBirthdayScreen(
+            viewModel = viewModel(factory = provideFactory(repository)),
             sharedViewModel = sharedViewModel,
             navigateToDocumentScreen = {
                 registerFlowNavigator.navigate(NestedDestination.registerDocumentRoute)
