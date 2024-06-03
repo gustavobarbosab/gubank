@@ -23,6 +23,7 @@ class FlowNavigatorImpl(
     }
 
     override fun navigateUp() {
-        navController.navigateUp()
+        val navigatedUp = navController.navigateUp()
+        if (!navigatedUp) parentNavigator?.navigateUp()
     }
 }
