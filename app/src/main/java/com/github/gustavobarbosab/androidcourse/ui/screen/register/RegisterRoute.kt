@@ -1,13 +1,23 @@
 package com.github.gustavobarbosab.androidcourse.ui.screen.register
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.github.gustavobarbosab.androidcourse.R
 import com.github.gustavobarbosab.androidcourse.ui.common.ScopedViewModelStoreOwner
+import com.github.gustavobarbosab.androidcourse.ui.common.components.AppToolbar
+import com.github.gustavobarbosab.androidcourse.ui.common.components.ToolbarIcon
 import com.github.gustavobarbosab.androidcourse.ui.navigation.destination.Destination
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigatorImpl
@@ -61,17 +71,28 @@ fun RegisterRoute(parentNavigator: FlowNavigator) {
         factory = RegisterFlowViewModel.provideFactory(repository)
     )
 
-    NavHost(
-        navController = registerFlowNavController,
-        startDestination = NestedDestination.registerNameRoute.route,
-    ) {
-        createRegisterNavGraph(
-            parentNavigator,
-            registerFlowNavigator,
-            sharedViewModel,
-            repository
+    val toolbarState by sharedViewModel.toolbarState.collectAsState()
+
+    Column {
+        AppToolbar(
+            title = toolbarState.title,
+            onBackButtonClicked = registerFlowNavigator::navigateUp,
+            icon = toolbarState.icon
         )
+        NavHost(
+            modifier = Modifier.fillMaxSize(),
+            navController = registerFlowNavController,
+            startDestination = NestedDestination.registerNameRoute.route,
+        ) {
+            createRegisterNavGraph(
+                parentNavigator,
+                registerFlowNavigator,
+                sharedViewModel,
+                repository
+            )
+        }
     }
+
 }
 
 private fun NavGraphBuilder.createRegisterNavGraph(
@@ -87,7 +108,7 @@ private fun NavGraphBuilder.createRegisterNavGraph(
 
         RegisterNameScreen(
             viewModel = viewModel,
-            onBackButtonClicked = parentNavigator::navigateUp,
+            sharedViewModel = sharedViewModel,
             goToBirthdayScreen = {
                 registerFlowNavigator.navigate(NestedDestination.registerBirthdayRoute)
             }
@@ -95,7 +116,7 @@ private fun NavGraphBuilder.createRegisterNavGraph(
     }
     composable(NestedDestination.registerBirthdayRoute.route) {
         RegisterBirthdayScreen(
-            registerFlowViewModel = sharedViewModel,
+            sharedViewModel = sharedViewModel,
             navigateToDocumentScreen = {
                 registerFlowNavigator.navigate(NestedDestination.registerDocumentRoute)
             }
