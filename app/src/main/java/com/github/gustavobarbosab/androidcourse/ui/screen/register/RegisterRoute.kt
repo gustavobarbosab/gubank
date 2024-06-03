@@ -12,7 +12,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.github.gustavobarbosab.androidcourse.ui.common.ScopedViewModelStoreOwner
+import com.github.gustavobarbosab.androidcourse.ui.common.viewmodel.ScopedViewModelStoreOwner
 import com.github.gustavobarbosab.androidcourse.ui.common.components.AppToolbar
 import com.github.gustavobarbosab.androidcourse.ui.navigation.destination.Destination
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
@@ -25,7 +25,6 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.addre
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthday.RegisterBirthdayScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.document.RegisterDocumentScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.name.RegisterNameScreen
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.name.RegisterNameViewModel
 
 data object RegisterDestination : Destination {
 
