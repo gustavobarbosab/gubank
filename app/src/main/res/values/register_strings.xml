@@ -4,4 +4,5 @@
     <string name="register_name_header">Informe seu nome completo para prosseguirmos com seu cadastro.</string>
     <string name="register_name_hint">Nome completo</string>
     <string name="register_name_invalid_name">Insira um nome válido</string>
+    <string name="register_name_button">Continuar</string>
 </resources>

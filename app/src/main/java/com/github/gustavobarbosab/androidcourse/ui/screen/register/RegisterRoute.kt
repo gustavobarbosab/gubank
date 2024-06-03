@@ -2,19 +2,16 @@ package com.github.gustavobarbosab.androidcourse.ui.screen.register
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.github.gustavobarbosab.androidcourse.R
 import com.github.gustavobarbosab.androidcourse.ui.common.ScopedViewModelStoreOwner
 import com.github.gustavobarbosab.androidcourse.ui.navigation.destination.Destination
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigatorImpl
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterDestination.NestedDestination
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.model.RegisterScreenState
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepository
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepositoryImpl
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.address.RegisterAddressScreen
@@ -64,53 +61,60 @@ fun RegisterRoute(parentNavigator: FlowNavigator) {
         factory = RegisterFlowViewModel.provideFactory(repository)
     )
 
-
     NavHost(
         navController = registerFlowNavController,
         startDestination = NestedDestination.registerNameRoute.route,
     ) {
-        composable(NestedDestination.registerNameRoute.route) {
-            val viewModel: RegisterNameViewModel = viewModel(
-                factory = RegisterNameViewModel.provideFactory(repository)
-            )
+        createRegisterNavGraph(
+            parentNavigator,
+            registerFlowNavigator,
+            sharedViewModel,
+            repository
+        )
+    }
+}
 
-            val toolbar = stringResource(R.string.register_toolbar)
-            val header = stringResource(R.string.register_name_header)
-            val hint = stringResource(R.string.register_name_hint)
-            val screenState = remember { RegisterScreenState(toolbar, header, hint) }
+private fun NavGraphBuilder.createRegisterNavGraph(
+    parentNavigator: FlowNavigator,
+    registerFlowNavigator: FlowNavigator,
+    sharedViewModel: RegisterFlowViewModel,
+    repository: RegisterFlowRepository,
+) {
+    composable(NestedDestination.registerNameRoute.route) {
+        val viewModel: RegisterNameViewModel = viewModel(
+            factory = RegisterNameViewModel.provideFactory(repository)
+        )
 
-            RegisterNameScreen(
-                viewModel = viewModel,
-                screenState = screenState,
-                onBackButtonClicked = parentNavigator::navigateUp,
-                goToBirthdayScreen = {
-                    registerFlowNavigator.navigate(NestedDestination.registerBirthdayRoute)
-                }
-            )
-        }
-        composable(NestedDestination.registerBirthdayRoute.route) {
-            RegisterBirthdayScreen(
-                registerFlowViewModel = sharedViewModel,
-                navigateToDocumentScreen = {
-                    registerFlowNavigator.navigate(NestedDestination.registerDocumentRoute)
-                }
-            )
-        }
-        composable(NestedDestination.registerDocumentRoute.route) {
-            RegisterDocumentScreen(
-                registerFlowViewModel = sharedViewModel,
-                navigateToAddressScreen = {
-                    registerFlowNavigator.navigate(NestedDestination.registerAddressRoute)
-                }
-            )
-        }
-        composable(NestedDestination.registerAddressRoute.route) {
-            RegisterAddressScreen(
-                registerFlowViewModel = sharedViewModel,
-                onFinishRegistration = {
-                    parentNavigator.navigateUp()
-                }
-            )
-        }
+        RegisterNameScreen(
+            viewModel = viewModel,
+            onBackButtonClicked = parentNavigator::navigateUp,
+            goToBirthdayScreen = {
+                registerFlowNavigator.navigate(NestedDestination.registerBirthdayRoute)
+            }
+        )
+    }
+    composable(NestedDestination.registerBirthdayRoute.route) {
+        RegisterBirthdayScreen(
+            registerFlowViewModel = sharedViewModel,
+            navigateToDocumentScreen = {
+                registerFlowNavigator.navigate(NestedDestination.registerDocumentRoute)
+            }
+        )
+    }
+    composable(NestedDestination.registerDocumentRoute.route) {
+        RegisterDocumentScreen(
+            registerFlowViewModel = sharedViewModel,
+            navigateToAddressScreen = {
+                registerFlowNavigator.navigate(NestedDestination.registerAddressRoute)
+            }
+        )
+    }
+    composable(NestedDestination.registerAddressRoute.route) {
+        RegisterAddressScreen(
+            registerFlowViewModel = sharedViewModel,
+            onFinishRegistration = {
+                parentNavigator.navigateUp()
+            }
+        )
     }
 }

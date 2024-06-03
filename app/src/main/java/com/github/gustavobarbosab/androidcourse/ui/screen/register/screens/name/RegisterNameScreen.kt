@@ -7,22 +7,21 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.github.gustavobarbosab.androidcourse.ui.common.ScopedViewModelStoreOwner
+import com.github.gustavobarbosab.androidcourse.R
 import com.github.gustavobarbosab.androidcourse.ui.common.components.AppToolbar
+import com.github.gustavobarbosab.androidcourse.ui.common.components.ToolbarIcon
 import com.github.gustavobarbosab.androidcourse.ui.common.components.ErrorTextField
 import com.github.gustavobarbosab.androidcourse.ui.common.components.IsolationColumn
 import com.github.gustavobarbosab.androidcourse.ui.common.components.PrimaryButton
@@ -30,13 +29,16 @@ import com.github.gustavobarbosab.androidcourse.ui.common.size.fontSizeMedium
 import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingSmall
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.secondaryLight
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.model.RegisterScreenState
 
 @Composable
 fun RegisterNameScreen(
+    screenState: RegisterScreenState = RegisterScreenState(
+        stringResource(R.string.register_toolbar),
+        stringResource(R.string.register_name_header),
+        stringResource(R.string.register_name_hint)
+    ),
     viewModel: RegisterNameViewModel,
-    screenState: RegisterScreenState,
     onBackButtonClicked: () -> Unit,
     goToBirthdayScreen: () -> Unit
 ) {
@@ -44,9 +46,9 @@ fun RegisterNameScreen(
 
     Column {
         AppToolbar(
-            title = "Novo Cadastro",
+            title = stringResource(id = R.string.register_toolbar),
             onBackButtonClicked = onBackButtonClicked,
-            icon = Icons.Outlined.Close
+            icon = ToolbarIcon.Close
         )
         Column(
             Modifier
@@ -81,7 +83,7 @@ fun RegisterNameScreen(
                         viewModel.onClickToContinue(goToBirthdayScreen = goToBirthdayScreen)
                     }
                 ) {
-                    Text(text = "Continuar")
+                    Text(text = stringResource(id = R.string.register_name_button))
                 }
             }
         }
@@ -103,8 +105,8 @@ private fun RegisterNamePreview() {
 
     AndroidCourseTheme {
         RegisterNameScreen(
-            viewModel,
             screenState,
+            viewModel,
             {},
             {}
         )

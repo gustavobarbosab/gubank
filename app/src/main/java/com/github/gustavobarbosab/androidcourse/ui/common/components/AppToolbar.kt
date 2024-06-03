@@ -2,13 +2,12 @@ package com.github.gustavobarbosab.androidcourse.ui.common.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,11 +24,17 @@ import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingSmall
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.primaryLight
 
+
+sealed class ToolbarIcon(val imageVector: ImageVector) {
+    data object Close : ToolbarIcon(Icons.AutoMirrored.Outlined.ArrowBack)
+    data object Back : ToolbarIcon(Icons.Outlined.Close)
+}
+
 @Composable
 fun AppToolbar(
     title: String,
     onBackButtonClicked: () -> Unit,
-    icon: ImageVector = Icons.AutoMirrored.Outlined.ArrowBack,
+    icon: ToolbarIcon = ToolbarIcon.Back,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -38,7 +43,7 @@ fun AppToolbar(
             .padding(paddingSmall)
     ) {
         Icon(
-            icon,
+            icon.imageVector,
             modifier = Modifier
                 .align(Alignment.CenterVertically)
                 .clickable { onBackButtonClicked() },

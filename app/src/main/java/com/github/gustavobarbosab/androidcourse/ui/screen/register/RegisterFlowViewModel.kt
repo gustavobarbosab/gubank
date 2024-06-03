@@ -26,34 +26,6 @@ class RegisterFlowViewModel(
         _myTextState.update { "$it $sharedString ${repository.name}" }
     }
 
-
-//
-//    fun saveAddress(
-//        cep: String,
-//        street: String?,
-//        district: String?,
-//        city: String?,
-//        number: String?
-//    ) {
-//        val valueToShow = StringBuilder()
-//            .append(street)
-//            .append(", ")
-//            .append(number)
-//            .append(" - ")
-//            .append(district)
-//            .append(". ")
-//            .append(city)
-//            .toString()
-//
-//        _userAddress.update {
-//            RegisterInputState(
-//                valueToShow,
-//                InputValidationState.ValidField
-//            )
-//
-//        }
-//    }
-
     companion object {
         fun provideFactory(
             repository: RegisterFlowRepository
