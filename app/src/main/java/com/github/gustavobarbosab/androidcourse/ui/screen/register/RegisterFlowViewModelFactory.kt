@@ -4,8 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepository
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthday.RegisterBirthdayViewModel
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthdate.RegisterBirthdateViewModel
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.document.RegisterDocumentViewModel
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.name.RegisterNameViewModel
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.resume.RegisterResumeViewModel
 
 object RegisterFlowViewModelFactory {
 
@@ -23,7 +25,13 @@ object RegisterFlowViewModelFactory {
             modelClass.isAssignableFrom(RegisterNameViewModel::class.java) -> RegisterNameViewModel(
                 repository
             )
-            modelClass.isAssignableFrom(RegisterBirthdayViewModel::class.java) -> RegisterBirthdayViewModel(
+            modelClass.isAssignableFrom(RegisterBirthdateViewModel::class.java) -> RegisterBirthdateViewModel(
+                repository
+            )
+            modelClass.isAssignableFrom(RegisterDocumentViewModel::class.java) -> RegisterDocumentViewModel(
+                repository
+            )
+            modelClass.isAssignableFrom(RegisterResumeViewModel::class.java) -> RegisterResumeViewModel(
                 repository
             )
             else -> throw UnsupportedOperationException()
