@@ -106,7 +106,7 @@ fun RegisterBirthdayScreen(
                     )
                 }
             ) {
-                Text(text = stringResource(id = R.string.register_name_button))
+                Text(text = stringResource(id = R.string.register_continue_button))
             }
         }
     }
