@@ -22,7 +22,7 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowV
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepository
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepositoryImpl
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.resume.RegisterAddressScreen
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthday.RegisterBirthdayScreen
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthdate.RegisterBirthdateScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.document.RegisterDocumentScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.name.RegisterNameScreen
 
@@ -35,8 +35,8 @@ data object RegisterDestination : Destination {
             override val route: String = "REGISTER_NAME"
         }
 
-        val registerBirthdayRoute = object : Destination {
-            override val route: String = "REGISTER_BIRTHDAY"
+        val registerBirthdateRoute = object : Destination {
+            override val route: String = "REGISTER_BIRTHDATE"
         }
 
         val registerDocumentRoute = object : Destination {
@@ -102,12 +102,12 @@ private fun NavGraphBuilder.createRegisterNavGraph(
             viewModel = viewModel(factory = provideFactory(repository)),
             sharedViewModel = sharedViewModel,
             navigateToBirthdayScreen = {
-                registerFlowNavigator.navigate(NestedDestination.registerBirthdayRoute)
+                registerFlowNavigator.navigate(NestedDestination.registerBirthdateRoute)
             }
         )
     }
-    composable(NestedDestination.registerBirthdayRoute.route) {
-        RegisterBirthdayScreen(
+    composable(NestedDestination.registerBirthdateRoute.route) {
+        RegisterBirthdateScreen(
             viewModel = viewModel(factory = provideFactory(repository)),
             sharedViewModel = sharedViewModel,
             navigateToDocumentScreen = {

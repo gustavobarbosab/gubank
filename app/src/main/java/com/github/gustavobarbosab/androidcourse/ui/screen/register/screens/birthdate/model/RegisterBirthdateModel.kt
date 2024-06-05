@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthday.model
+package com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthdate.model
 
 import com.github.gustavobarbosab.androidcourse.ui.common.extension.CalendarMonth
 import com.github.gustavobarbosab.androidcourse.ui.common.extension.addYear
@@ -6,7 +6,7 @@ import com.github.gustavobarbosab.androidcourse.ui.common.extension.setDayOfMont
 import com.github.gustavobarbosab.androidcourse.ui.common.extension.setMonth
 import java.util.Calendar
 
-class RegisterBirthdayModel {
+class RegisterBirthdateModel {
 
     val maxDateCalendar by lazy {
         Calendar.getInstance().addYear(MINUS_MIN_AGE)

@@ -1,16 +1,16 @@
-package com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthday
+package com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthdate
 
 import androidx.lifecycle.ViewModel
 import com.github.gustavobarbosab.androidcourse.R
 import com.github.gustavobarbosab.androidcourse.ui.common.components.InputValidationState
 import com.github.gustavobarbosab.androidcourse.ui.common.extension.year
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepository
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthday.model.RegisterBirthdayModel
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthdate.model.RegisterBirthdateModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.util.Calendar
 
-class RegisterBirthdayViewModel(
+class RegisterBirthdateViewModel(
     private val repository: RegisterFlowRepository
 ) : ViewModel() {
 
@@ -19,7 +19,7 @@ class RegisterBirthdayViewModel(
     val dateValidationState
         get() = _dateValidationState.asStateFlow()
 
-    private val model = RegisterBirthdayModel()
+    private val model = RegisterBirthdateModel()
 
     val preSelectedDate: Long
         get() = model.preSelectedDate

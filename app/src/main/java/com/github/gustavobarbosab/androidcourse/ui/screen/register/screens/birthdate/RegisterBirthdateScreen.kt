@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthday
+package com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthdate
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -40,12 +40,12 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.Register
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterBirthdayScreen(
+fun RegisterBirthdateScreen(
     screenState: RegisterScreenState = RegisterScreenState(
         stringResource(R.string.register_toolbar_birthday),
         stringResource(R.string.register_birthday_header)
     ),
-    viewModel: RegisterBirthdayViewModel,
+    viewModel: RegisterBirthdateViewModel,
     sharedViewModel: RegisterFlowViewModel,
     navigateToDocumentScreen: () -> Unit
 ) {
@@ -126,7 +126,7 @@ private fun RegisterBirthdayScreenPreview() {
         )
     }
     AndroidCourseTheme {
-        RegisterBirthdayScreen(
+        RegisterBirthdateScreen(
             screenState,
             viewModel(factory = factory),
             viewModel(factory = factory),
