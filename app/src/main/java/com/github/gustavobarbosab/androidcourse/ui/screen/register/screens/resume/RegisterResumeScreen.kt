@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.address
+package com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.resume
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.gustavobarbosab.androidcourse.ui.common.components.PrimaryButton
-import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
 
 @Composable
