@@ -21,7 +21,7 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterDesti
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModelFactory.provideFactory
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepository
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepositoryImpl
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.address.RegisterAddressScreen
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.resume.RegisterAddressScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthday.RegisterBirthdayScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.document.RegisterDocumentScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.name.RegisterNameScreen
@@ -43,7 +43,7 @@ data object RegisterDestination : Destination {
             override val route: String = "REGISTER_DOCUMENT"
         }
 
-        val registerAddressRoute = object : Destination {
+        val registerResumeRoute = object : Destination {
             override val route: String = "REGISTER_ADDRESS"
         }
     }
@@ -117,13 +117,14 @@ private fun NavGraphBuilder.createRegisterNavGraph(
     }
     composable(NestedDestination.registerDocumentRoute.route) {
         RegisterDocumentScreen(
-            registerFlowViewModel = sharedViewModel,
+            sharedViewModel = sharedViewModel,
+            viewModel = viewModel(factory = provideFactory(repository)),
             navigateToAddressScreen = {
-                registerFlowNavigator.navigate(NestedDestination.registerAddressRoute)
+                registerFlowNavigator.navigate(NestedDestination.registerResumeRoute)
             }
         )
     }
-    composable(NestedDestination.registerAddressRoute.route) {
+    composable(NestedDestination.registerResumeRoute.route) {
         RegisterAddressScreen(
             registerFlowViewModel = sharedViewModel,
             onFinishRegistration = {
