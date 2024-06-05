@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -29,7 +30,6 @@ import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingSmall
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.secondaryLight
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.extension.LaunchToolbar
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.model.RegisterScreenState
 
 @Composable
@@ -45,10 +45,12 @@ fun RegisterNameScreen(
 ) {
     val inputState by viewModel.userName.collectAsState()
 
-    sharedViewModel.LaunchToolbar(
-        "Cadastro - Etapa 1 de 4",
-        ToolbarIcon.Close
-    )
+    LaunchedEffect(Unit) {
+        sharedViewModel.setupToolbar(
+            "Cadastro - Etapa 1 de 4",
+            ToolbarIcon.Close
+        )
+    }
 
     Column(
         Modifier

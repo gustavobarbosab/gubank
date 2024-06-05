@@ -6,11 +6,11 @@ import com.github.gustavobarbosab.androidcourse.ui.common.components.ToolbarIcon
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
 
 @Composable
-fun RegisterFlowViewModel.LaunchToolbar(
+fun RegisterFlowViewModel.setupToolbar(
     title: String,
     icon: ToolbarIcon
 ) {
     LaunchedEffect(Unit) {
-        this@LaunchToolbar.setupToolbar(title, icon)
+        this@setupToolbar.setupToolbar(title, icon)
     }
 }

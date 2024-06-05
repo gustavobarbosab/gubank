@@ -17,6 +17,9 @@ object RegisterFlowViewModelFactory {
             modelClass: Class<T>,
             extras: CreationExtras
         ): T = when {
+            modelClass.isAssignableFrom(RegisterFlowViewModel::class.java) -> RegisterFlowViewModel(
+                repository
+            )
             modelClass.isAssignableFrom(RegisterNameViewModel::class.java) -> RegisterNameViewModel(
                 repository
             )
