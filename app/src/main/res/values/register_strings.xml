@@ -4,8 +4,9 @@
     <string name="register_name_header">Informe seu nome completo para prosseguirmos com seu cadastro.</string>
     <string name="register_name_hint">Nome completo</string>
     <string name="register_name_invalid_name">Insira um nome válido</string>
-    <string name="register_name_button">Continuar</string>
+    <string name="register_continue_button">Continuar</string>
     <string name="register_toolbar_birthday">Cadastro - Etapa 2 de 4</string>
     <string name="register_birthday_header">Informe sua data de nascimento para prosseguirmos com seu cadastro.</string>
     <string name="register_birthday_invalid_date">Por favor, selecione uma data para continuar…</string>
+    <string name="register_finish_button">Finalizar</string>
 </resources>
