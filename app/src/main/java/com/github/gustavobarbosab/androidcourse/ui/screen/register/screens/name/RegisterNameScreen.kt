@@ -30,12 +30,13 @@ import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingSmall
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.secondaryLight
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.extension.registerToolbarSetup
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.model.RegisterScreenState
 
 @Composable
 fun RegisterNameScreen(
     screenState: RegisterScreenState = RegisterScreenState(
-        stringResource(R.string.register_toolbar),
+        stringResource(R.string.register_toolbar_name),
         stringResource(R.string.register_name_header),
         stringResource(R.string.register_name_hint)
     ),
@@ -45,12 +46,10 @@ fun RegisterNameScreen(
 ) {
     val inputState by viewModel.userName.collectAsState()
 
-    LaunchedEffect(Unit) {
-        sharedViewModel.setupToolbar(
-            "Cadastro - Etapa 1 de 4",
-            ToolbarIcon.Close
-        )
-    }
+    sharedViewModel.registerToolbarSetup(
+        screenState.toolbarTitle,
+        ToolbarIcon.Back
+    )
 
     Column(
         Modifier

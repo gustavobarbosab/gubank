@@ -34,6 +34,7 @@ import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseThe
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.secondaryLight
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModelFactory
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.extension.registerToolbarSetup
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.model.RegisterScreenState
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepositoryImpl
 
@@ -41,20 +42,18 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.Register
 @Composable
 fun RegisterBirthdayScreen(
     screenState: RegisterScreenState = RegisterScreenState(
-        stringResource(R.string.register_toolbar),
-        stringResource(R.string.register_name_header),
-        stringResource(R.string.register_name_hint)
+        stringResource(R.string.register_toolbar_birthday),
+        stringResource(R.string.register_birthday_header)
     ),
     viewModel: RegisterBirthdayViewModel,
     sharedViewModel: RegisterFlowViewModel,
     navigateToDocumentScreen: () -> Unit
 ) {
-    LaunchedEffect(Unit) {
-        sharedViewModel.setupToolbar(
-            "Cadastro - Etapa 2 de 4",
-            ToolbarIcon.Back
-        )
-    }
+
+    sharedViewModel.registerToolbarSetup(
+        screenState.toolbarTitle,
+        ToolbarIcon.Back
+    )
 
     val dateValidationState by viewModel.dateValidationState.collectAsState()
 

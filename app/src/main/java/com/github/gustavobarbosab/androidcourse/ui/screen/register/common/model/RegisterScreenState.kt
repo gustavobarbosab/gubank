@@ -6,5 +6,5 @@ import androidx.compose.runtime.Immutable
 data class RegisterScreenState(
     val toolbarTitle: String,
     val headerTitle: String,
-    val textFieldLabel: String
+    val textFieldLabel: String = ""
 )
