@@ -29,8 +29,10 @@ import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingSmall
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.secondaryLight
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModelFactory
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.extension.registerToolbarSetup
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.model.RegisterScreenState
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepositoryImpl
 
 @Composable
 fun RegisterNameScreen(
@@ -92,22 +94,20 @@ fun RegisterNameScreen(
 @Preview(device = "id:Nexus 4")
 @Composable
 private fun RegisterNamePreview() {
-    val viewModel = viewModel<RegisterNameViewModel>()
-    val sharedViewModel = viewModel<RegisterFlowViewModel>()
-    val screenState = remember {
-        RegisterScreenState(
-            "Novo cadastro",
-            "Informe seu nome completo para prosseguirmos com seu cadastro.",
-            "Nome completo"
-        )
+    val repository = remember {
+        RegisterFlowRepositoryImpl()
     }
-
+    val viewModel = viewModel<RegisterNameViewModel>(
+        factory = RegisterFlowViewModelFactory.provideFactory(repository)
+    )
+    val sharedViewModel = viewModel<RegisterFlowViewModel>(
+        factory = RegisterFlowViewModelFactory.provideFactory(repository)
+    )
     AndroidCourseTheme {
         RegisterNameScreen(
-            screenState,
-            sharedViewModel,
-            viewModel,
-            {}
+            sharedViewModel = sharedViewModel,
+            viewModel = viewModel,
+            navigateToBirthdayScreen = {}
         )
     }
 }
