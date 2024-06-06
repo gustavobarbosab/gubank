@@ -14,6 +14,7 @@
     <string name="register_resume_name_label">Nome:</string>
     <string name="register_resume_birthdate_label">Data de nascimento:</string>
     <string name="register_resume_document_label">Documento CPF/CNPJ:</string>
+    <string name="register_resume_header">Revise os dados informados para concluirmos seu cadastro.</string>
     <string name="register_document_header">Informe seu CPF/CPNJ para prosseguirmos com seu cadastro.</string>
     <string name="register_document_invalid_document">Insira um documento válido</string>
 </resources>
