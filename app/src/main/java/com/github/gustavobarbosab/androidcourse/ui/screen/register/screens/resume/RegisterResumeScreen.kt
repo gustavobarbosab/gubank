@@ -12,21 +12,31 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.github.gustavobarbosab.androidcourse.R
 import com.github.gustavobarbosab.androidcourse.ui.common.components.PrimaryButton
 import com.github.gustavobarbosab.androidcourse.ui.common.components.ToolbarIcon
+import com.github.gustavobarbosab.androidcourse.ui.common.size.fontSizeMedium
+import com.github.gustavobarbosab.androidcourse.ui.common.size.fontSizeSmall
 import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingSmall
+import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingTiny
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
+import com.github.gustavobarbosab.androidcourse.ui.common.theme.onSecondaryContainerLight
+import com.github.gustavobarbosab.androidcourse.ui.common.theme.secondaryLight
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModelFactory
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.extension.registerToolbarSetup
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.model.RegisterScreenState
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepositoryImpl
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.resume.model.ResumeDynamicFieldsState
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.resume.model.ResumeScreenState
 
@@ -34,8 +44,7 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.resum
 fun RegisterResumeScreen(
     screenState: ResumeScreenState = ResumeScreenState(
         toolbarTitle = stringResource(R.string.register_toolbar_resume),
-        headerTitle = stringResource(R.string.register_name_header),
-        textFieldLabel = stringResource(R.string.register_name_hint),
+        headerTitle = stringResource(R.string.register_resume_header),
         labelName = stringResource(R.string.register_resume_name_label),
         labelDocument = stringResource(R.string.register_resume_document_label),
         labelBirthdate = stringResource(R.string.register_resume_birthdate_label)
@@ -57,15 +66,32 @@ fun RegisterResumeScreen(
             .padding(paddingSmall)
             .background(Color.White)
     ) {
+        Text(
+            modifier = Modifier
+                .padding(vertical = paddingSmall)
+                .fillMaxWidth(),
+            text = screenState.headerTitle,
+            color = secondaryLight,
+            fontSize = fontSizeMedium
+        )
         InformativeLabel(
+            modifier = Modifier.padding(
+                vertical = paddingTiny
+            ),
             title = screenState.labelName,
             subTitle = dynamicFieldsState.name,
         )
         InformativeLabel(
+            modifier = Modifier.padding(
+                vertical = paddingTiny
+            ),
             title = screenState.labelBirthdate,
             subTitle = dynamicFieldsState.birthdate,
         )
         InformativeLabel(
+            modifier = Modifier.padding(
+                vertical = paddingTiny
+            ),
             title = screenState.labelDocument,
             subTitle = dynamicFieldsState.document,
         )
@@ -85,12 +111,23 @@ fun RegisterResumeScreen(
 
 @Composable
 fun InformativeLabel(
+    modifier: Modifier = Modifier,
     title: String,
     subTitle: String
 ) {
-    Column {
-        Text(text = title)
-        Text(text = subTitle)
+    Column(modifier) {
+        // TODO create a kind of style to the text titles and subtitles
+        Text(
+            fontSize = fontSizeMedium,
+            fontWeight = FontWeight.Bold,
+            color = secondaryLight,
+            text = title
+        )
+        Text(
+            fontSize = fontSizeSmall,
+            color = onSecondaryContainerLight,
+            text = subTitle
+        )
     }
 }
 
@@ -99,6 +136,10 @@ fun InformativeLabel(
 private fun InformativeLabelPreview() {
     AndroidCourseTheme {
         InformativeLabel(
+            modifier = Modifier.padding(
+                horizontal = paddingSmall,
+                vertical = paddingTiny
+            ),
             "Meu titulo:",
             "Gustavo Barbosa Barreto"
         )
@@ -109,10 +150,18 @@ private fun InformativeLabelPreview() {
 @Preview(device = "id:Nexus 4")
 @Composable
 private fun RegisterAddressScreenPreview() {
+    val repository = remember {
+        RegisterFlowRepositoryImpl()
+    }
+
     AndroidCourseTheme {
         RegisterResumeScreen(
-            sharedViewModel = viewModel(),
-            viewModel = viewModel(),
+            sharedViewModel = viewModel(
+                factory = RegisterFlowViewModelFactory.provideFactory(
+                    repository
+                )
+            ),
+            viewModel = viewModel(factory = RegisterFlowViewModelFactory.provideFactory(repository)),
             onFinishRegistration = {}
         )
     }
