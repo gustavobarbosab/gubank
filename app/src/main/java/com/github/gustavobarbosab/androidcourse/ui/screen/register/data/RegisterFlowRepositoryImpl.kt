@@ -4,7 +4,7 @@ import java.util.Calendar
 
 class RegisterFlowRepositoryImpl : RegisterFlowRepository {
     override var name = ""
-    override var birthday: Calendar = Calendar.getInstance()
+    override var birthdate: Calendar = Calendar.getInstance()
     override var document = ""
     override var street = ""
     override var district = ""

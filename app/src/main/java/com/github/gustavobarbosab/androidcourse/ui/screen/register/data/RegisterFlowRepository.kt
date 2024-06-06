@@ -4,7 +4,7 @@ import java.util.Calendar
 
 interface RegisterFlowRepository {
     var name: String
-    var birthday: Calendar
+    var birthdate: Calendar
     var document: String
     var street: String
     var district: String

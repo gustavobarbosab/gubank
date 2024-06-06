@@ -21,7 +21,7 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterDesti
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModelFactory.provideFactory
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepository
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepositoryImpl
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.resume.RegisterAddressScreen
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.resume.RegisterResumeScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.birthdate.RegisterBirthdateScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.document.RegisterDocumentScreen
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.name.RegisterNameScreen
@@ -125,8 +125,9 @@ private fun NavGraphBuilder.createRegisterNavGraph(
         )
     }
     composable(NestedDestination.registerResumeRoute.route) {
-        RegisterAddressScreen(
-            registerFlowViewModel = sharedViewModel,
+        RegisterResumeScreen(
+            sharedViewModel = sharedViewModel,
+            viewModel = viewModel(factory = provideFactory(repository)),
             onFinishRegistration = {
                 parentNavigator.navigateUp()
             }

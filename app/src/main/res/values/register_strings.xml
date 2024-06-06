@@ -9,4 +9,9 @@
     <string name="register_birthday_header">Informe sua data de nascimento para prosseguirmos com seu cadastro.</string>
     <string name="register_birthday_invalid_date">Por favor, selecione uma data para continuar…</string>
     <string name="register_finish_button">Finalizar</string>
+    <string name="register_toolbar_document">Cadastro - Etapa 3 de 4</string>
+    <string name="register_toolbar_resume">Cadastro - Etapa 4 de 4</string>
+    <string name="register_resume_name_label">Nome:</string>
+    <string name="register_resume_birthdate_label">Data de nascimento:</string>
+    <string name="register_resume_document_label">Documento CPF/CNPJ:</string>
 </resources>

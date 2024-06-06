@@ -44,7 +44,7 @@ class RegisterBirthdateViewModel(
         _dateValidationState.value = InputValidationState.ValidField
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = selectedDateMillis
-        repository.birthday = calendar
+        repository.birthdate = calendar
     }
 
     fun isSelectableDate(utcTimeMillis: Long): Boolean = isDateValid(utcTimeMillis)
