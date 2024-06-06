@@ -28,20 +28,19 @@ import com.github.gustavobarbosab.androidcourse.ui.common.theme.secondaryLight
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.extension.registerToolbarSetup
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.model.RegisterScreenState
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.name.RegisterNameViewModel
 
 @Composable
 fun RegisterDocumentScreen(
     screenState: RegisterScreenState = RegisterScreenState(
         stringResource(R.string.register_toolbar_name),
-        stringResource(R.string.register_name_header),
-        stringResource(R.string.register_name_hint)
+        stringResource(R.string.register_document_header),
+        stringResource(R.string.register_resume_document_label)
     ),
     sharedViewModel: RegisterFlowViewModel,
-    viewModel: RegisterNameViewModel,
-    navigateToAddressScreen: () -> Unit
+    viewModel: RegisterDocumentViewModel,
+    navigateToResumeScreen: () -> Unit
 ) {
-    val inputState by viewModel.userName.collectAsState()
+    val inputState by viewModel.document.collectAsState()
 
     sharedViewModel.registerToolbarSetup(
         screenState.toolbarTitle,
@@ -51,6 +50,7 @@ fun RegisterDocumentScreen(
     Column(
         Modifier
             .fillMaxSize()
+            .padding(paddingSmall)
             .background(Color.White)
     ) {
         Text(
@@ -77,7 +77,7 @@ fun RegisterDocumentScreen(
                     .fillMaxWidth()
                     .align(Alignment.Bottom),
                 onClick = {
-                    viewModel.onClickToContinue(goToBirthdayScreen = navigateToAddressScreen)
+                    viewModel.onClickToContinue(goToResumeScreen = navigateToResumeScreen)
                 }
             ) {
                 Text(text = stringResource(id = R.string.register_continue_button))

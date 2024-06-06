@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -21,6 +22,7 @@ import androidx.navigation.compose.rememberNavController
 import com.github.gustavobarbosab.androidcourse.R
 import com.github.gustavobarbosab.androidcourse.ui.common.components.PrimaryButton
 import com.github.gustavobarbosab.androidcourse.ui.common.components.ToolbarIcon
+import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingSmall
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.extension.registerToolbarSetup
@@ -52,6 +54,7 @@ fun RegisterResumeScreen(
     Column(
         Modifier
             .fillMaxSize()
+            .padding(paddingSmall)
             .background(Color.White)
     ) {
         InformativeLabel(

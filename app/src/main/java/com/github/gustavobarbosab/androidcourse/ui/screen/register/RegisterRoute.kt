@@ -119,7 +119,7 @@ private fun NavGraphBuilder.createRegisterNavGraph(
         RegisterDocumentScreen(
             sharedViewModel = sharedViewModel,
             viewModel = viewModel(factory = provideFactory(repository)),
-            navigateToAddressScreen = {
+            navigateToResumeScreen = {
                 registerFlowNavigator.navigate(NestedDestination.registerResumeRoute)
             }
         )

@@ -6,6 +6,7 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.resum
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.text.SimpleDateFormat
+import java.util.Locale
 
 class RegisterResumeViewModel(
     private val repository: RegisterFlowRepository
@@ -17,13 +18,12 @@ class RegisterResumeViewModel(
 
     init {
         val birthdate = repository.birthdate
-        val dateFormatter = SimpleDateFormat()
-//        dateFormatter.
-//        val birthdateFormattedValue = birthdate.
+        val dateFormatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val birthdateFormattedValue = dateFormatter.format(birthdate.time)
 
         _resumeDynamicFields.value = ResumeDynamicFieldsState(
             repository.name,
-            repository.birthdate.toString(),
+            birthdateFormattedValue,
             repository.document
         )
     }
