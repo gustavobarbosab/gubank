@@ -28,8 +28,8 @@ import com.github.gustavobarbosab.androidcourse.ui.common.size.fontSizeMedium
 import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingSmall
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.secondaryLight
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModelFactory
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.RegisterFlowViewModel
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.RegisterFlowViewModelFactory
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.extension.registerToolbarSetup
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.model.RegisterScreenState
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepositoryImpl

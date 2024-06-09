@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -17,11 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.compose.rememberNavController
 import com.github.gustavobarbosab.androidcourse.R
 import com.github.gustavobarbosab.androidcourse.ui.common.components.PrimaryButton
 import com.github.gustavobarbosab.androidcourse.ui.common.components.ToolbarIcon
@@ -32,12 +29,10 @@ import com.github.gustavobarbosab.androidcourse.ui.common.size.paddingTiny
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.onSecondaryContainerLight
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.secondaryLight
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModel
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterFlowViewModelFactory
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.RegisterFlowViewModel
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.RegisterFlowViewModelFactory
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.extension.registerToolbarSetup
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.common.model.RegisterScreenState
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepositoryImpl
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.resume.model.ResumeDynamicFieldsState
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.resume.model.ResumeScreenState
 
 @Composable

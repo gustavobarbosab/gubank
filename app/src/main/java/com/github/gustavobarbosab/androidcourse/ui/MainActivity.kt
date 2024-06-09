@@ -10,12 +10,10 @@ import androidx.navigation.compose.rememberNavController
 import com.github.gustavobarbosab.androidcourse.ui.common.theme.AndroidCourseTheme
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigatorImpl
-import com.github.gustavobarbosab.androidcourse.ui.screen.home.HomeDestination
 import com.github.gustavobarbosab.androidcourse.ui.screen.home.HomeRoute
-import com.github.gustavobarbosab.androidcourse.ui.screen.login.LoginDestination
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.LoginRoute
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterDestination
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.RegisterRoute
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.registerGraph
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.RegisterParentScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,17 +25,15 @@ class MainActivity : ComponentActivity() {
 
                 NavHost(
                     navController = navController,
-                    startDestination = LoginDestination.route
+                    startDestination = LoginRoute.name
                 ) {
-                    composable(HomeDestination.route) {
+                    composable(HomeRoute.name) {
                         HomeRoute(parentNavigator)
                     }
-                    composable(LoginDestination.route) {
+                    composable(LoginRoute.name) {
                         LoginRoute(parentNavigator)
                     }
-                    composable(RegisterDestination.route) {
-                        RegisterRoute(parentNavigator)
-                    }
+                    registerGraph(parentNavigator)
                 }
             }
         }

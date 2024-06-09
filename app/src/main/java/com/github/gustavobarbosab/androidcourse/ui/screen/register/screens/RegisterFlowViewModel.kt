@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.screen.register
+package com.github.gustavobarbosab.androidcourse.ui.screen.register.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -43,15 +43,5 @@ class RegisterFlowViewModel(
     override fun onCleared() {
         this.onBackPressed = {}
         super.onCleared()
-    }
-
-    companion object {
-        fun provideFactory(
-            repository: RegisterFlowRepository
-        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
-                return RegisterFlowViewModel(repository) as T
-            }
-        }
     }
 }
