@@ -10,7 +10,7 @@ import androidx.navigation.compose.NavHost
 import com.github.gustavobarbosab.androidcourse.ui.common.components.AppToolbar
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.data.RegisterFlowRepository
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.destination.RegisterNameRoute
+import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.destination.subgraph.RegisterNameRoute
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.registerSubGraph
 
 @Composable

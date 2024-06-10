@@ -2,9 +2,9 @@ package com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.d
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
-import com.github.gustavobarbosab.androidcourse.ui.common.viewmodel.ScopedViewModelStoreOwner
 import com.github.gustavobarbosab.androidcourse.ui.navigation.destination.Route
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigatorImpl
@@ -23,17 +23,19 @@ object RegisterParentRoute : Route {
 }
 
 @Composable
-fun RegisterParentDestination(navigator: FlowNavigator) {
+fun RegisterParentDestination(
+    viewModelStoreOwner: ViewModelStoreOwner,
+    navigator: FlowNavigator
+) {
     val registerFlowNavController = rememberNavController()
     val registerFlowNavigator = remember<FlowNavigator> {
         FlowNavigatorImpl(registerFlowNavController, navigator)
     }
-    val scopedViewModelStore = remember { ScopedViewModelStoreOwner() }
     val repository: RegisterFlowRepository = remember {
         RegisterFlowRepositoryImpl()
     }
     val sharedViewModel = viewModel<RegisterFlowViewModel>(
-        viewModelStoreOwner = scopedViewModelStore,
+        viewModelStoreOwner = viewModelStoreOwner,
         factory = RegisterFlowViewModelFactory.provideFactory(repository)
     )
 

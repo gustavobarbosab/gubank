@@ -1,8 +1,8 @@
-package com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.destination
+package com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.destination.subgraph
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavBackStackEntry
 import com.github.gustavobarbosab.androidcourse.ui.navigation.destination.Route
 import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavigator
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.screens.RegisterFlowViewModelFactory.provideFactory
@@ -19,9 +19,13 @@ object RegisterDocumentRoute : Route {
 fun RegisterDocumentDestination(
     repository: RegisterFlowRepository,
     flowNavigator: FlowNavigator,
-    sharedViewModel: RegisterFlowViewModel
+    sharedViewModel: RegisterFlowViewModel,
+    backStackEntry: NavBackStackEntry
 ) {
-    val viewModel: RegisterDocumentViewModel = viewModel(factory = provideFactory(repository))
+    val viewModel: RegisterDocumentViewModel = viewModel(
+        factory = provideFactory(repository),
+        viewModelStoreOwner = backStackEntry
+    )
 
     RegisterDocumentScreen(
         viewModel = viewModel,
