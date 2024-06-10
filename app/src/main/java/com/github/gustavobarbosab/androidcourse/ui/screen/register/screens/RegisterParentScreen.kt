@@ -37,6 +37,7 @@ fun RegisterParentScreen(
             onBackButtonClicked = flowNavigator::navigateUp,
             icon = toolbarState.icon
         )
+        // TODO -- Add the progress here
         NavHost(
             modifier = Modifier.fillMaxSize(),
             navController = flowNavigator.navController,
