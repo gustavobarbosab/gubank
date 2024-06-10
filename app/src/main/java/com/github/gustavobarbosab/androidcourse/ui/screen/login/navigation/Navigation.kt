@@ -16,7 +16,7 @@ fun NavGraphBuilder.loginGraph(flowNavigator: FlowNavigator) {
         startDestination = LoginRoute.name
     ) {
         composable(LoginRoute.name) {
-            HomeDestination(flowNavigator = flowNavigator)
+            LoginDestination(flowNavigator = flowNavigator)
         }
     }
 }

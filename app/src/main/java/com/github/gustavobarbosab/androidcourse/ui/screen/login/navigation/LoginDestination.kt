@@ -12,7 +12,7 @@ object LoginRoute : Route {
 }
 
 @Composable
-fun HomeDestination(flowNavigator: FlowNavigator) {
+fun LoginDestination(flowNavigator: FlowNavigator) {
     val viewModel = viewModel<LoginViewModel>()
     LoginScreen(
         parentNavigator = flowNavigator,
