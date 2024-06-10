@@ -1,4 +1,4 @@
-package com.github.gustavobarbosab.androidcourse.ui.screen.login
+package com.github.gustavobarbosab.androidcourse.ui.screen.login.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -8,15 +8,14 @@ import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.LoginScre
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.LoginViewModel
 
 object LoginRoute : Route {
-    override val name: String = "LOGIN"
+    override val name: String = "LoginRoute"
 }
 
 @Composable
-fun LoginRoute(parentNavigator: FlowNavigator) {
+fun HomeDestination(flowNavigator: FlowNavigator) {
     val viewModel = viewModel<LoginViewModel>()
     LoginScreen(
-        parentNavigator = parentNavigator,
+        parentNavigator = flowNavigator,
         viewModel
     )
 }
-
