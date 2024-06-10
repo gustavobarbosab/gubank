@@ -8,13 +8,13 @@ import com.github.gustavobarbosab.androidcourse.ui.navigation.navigator.FlowNavi
 
 @Composable
 fun LaunchNavigation(
-    navigationState: NavigationState,
+    navigationStateOwner: NavigationStateOwner,
     navigator: FlowNavigator,
 ) {
-    val state by navigationState.destinationState.collectAsState()
+    val state by navigationStateOwner.destinationState.collectAsState()
     LaunchedEffect(state) {
         val destination = state ?: return@LaunchedEffect
         navigator.navigate(destination)
-        navigationState.onNavigationDone()
+        navigationStateOwner.onNavigationDone()
     }
 }

@@ -4,17 +4,16 @@ import androidx.lifecycle.ViewModel
 import com.github.gustavobarbosab.androidcourse.ui.common.components.InputValidationState
 import com.github.gustavobarbosab.androidcourse.ui.common.components.InputValidationState.InvalidField
 import com.github.gustavobarbosab.androidcourse.ui.navigation.destination.Route
-import com.github.gustavobarbosab.androidcourse.ui.navigation.compose.NavigationState
+import com.github.gustavobarbosab.androidcourse.ui.navigation.compose.NavigationStateOwner
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.model.FieldValidator
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.model.LoginFeedbackResource
 import com.github.gustavobarbosab.androidcourse.ui.screen.login.screen.model.TextInputState
 import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.destination.RegisterEntryPointRoute
-import com.github.gustavobarbosab.androidcourse.ui.screen.register.navigation.destination.RegisterParentRoute
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class LoginViewModel : ViewModel(), NavigationState {
+class LoginViewModel : ViewModel(), NavigationStateOwner {
 
     private var _usernameState = MutableStateFlow(TextInputState.initialState())
     val usernameState

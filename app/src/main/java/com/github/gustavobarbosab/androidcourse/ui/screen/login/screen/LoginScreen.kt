@@ -70,7 +70,7 @@ fun LoginScreen(
     }
 
     LaunchNavigation(
-        navigationState = viewModel,
+        navigationStateOwner = viewModel,
         navigator = parentNavigator
     )
 
